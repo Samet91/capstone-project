@@ -50,7 +50,7 @@ const IncExpContainer = styled.div`
 
 const IncomeContainer = styled.div`
   flex: 1 1;
-  background-color: rgb(20 20 41 / 60%) !important;
+  background-color: rgb(20 20 41 / 50%) !important;
   color: #f5f5f5 !important;
   padding: 10px;
   border-radius: 10px;
@@ -59,7 +59,7 @@ const IncomeContainer = styled.div`
 
 const ExpenseContainer = styled.div`
   flex: 1 1;
-  background-color: rgb(20 20 41 / 60%);
+  background-color: rgb(20 20 41 / 50%);
   color: #f5f5f5;
   padding: 10px;
   border-radius: 10px;

@@ -6,4 +6,4 @@ export default {
   component: Expense,
 }
 
-export const Regular = (): JSX.Element => <Expense income={0} expense={0} />
+export const Standard = (): JSX.Element => <Expense income={0} expense={0} />

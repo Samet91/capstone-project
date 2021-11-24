@@ -7,8 +7,6 @@ type inOutProps = {
 }
 
 export default function Expense({ income, expense }: inOutProps): JSX.Element {
-    
-
   return (
     <>
       <BalanceTitle>Bilanz</BalanceTitle>

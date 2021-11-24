@@ -6,17 +6,12 @@ export default {
   component: TransactionForm,
 }
 
-
 export const Regular = (): JSX.Element => (
-  <TransactionForm 
-    onNewTransaction={data =>  {
-
-      data.category = "Schuhe"
+  <TransactionForm
+    onNewTransaction={(data) => {
+      data.category = 'Schuhe'
       data.amount = 50
-      data.type = 
-    }
-  }
-    
-
+      data.type = 'income'
+    }}
   />
 )

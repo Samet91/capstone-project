@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import styled from 'styled-components'
 import { idGenerator } from '../Utils'
 
 type TransactionFormProps = {

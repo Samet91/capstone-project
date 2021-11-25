@@ -45,25 +45,33 @@ export default function TransactionForm({
           <Input
             type="text"
             placeholder="Kategorie.."
+
             required
+
             maxLength={15}
             value={category}
             onChange={(event) => setCategory(event.target.value)}
           />
+
           {!category ? <Warning>Bitte Kategorie hinzufügen!</Warning> : ''}
+
         </CatContainer>
         <AmountContainer>
           <Input
             type="number"
             placeholder="Betrag.."
+
             required
+
             maxLength={8}
             value={amount}
             onChange={(event) =>
               setAmount(Math.abs(parseFloat(event.target.value)))
             }
           />
+
           {!category ? <Warning>Bitte Betrag hinzufügen!</Warning> : ''}
+
         </AmountContainer>
         <ButtonContainer>
           <Button onClick={(event) => addTransaction('income', event)}>
@@ -125,4 +133,4 @@ const Button = styled.button`
 
 const Warning = styled.span`
   color: #d86d6d;
-`
+

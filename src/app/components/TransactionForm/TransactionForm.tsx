@@ -1,14 +1,15 @@
-
 import React, { useState } from 'react'
 import { idGenerator } from '../Utils'
 
+export type Transaction = {
+  id: number
+  category: string
+  amount: number
+  type: string
+}
+
 type TransactionFormProps = {
-  onNewTransaction: (data: {
-    id: number
-    category: string
-    amount: number
-    type: string
-  }) => void
+  onNewTransaction: (data: Transaction) => void
 }
 
 export default function TransactionForm({
@@ -43,12 +44,14 @@ export default function TransactionForm({
         <input
           type="text"
           placeholder="Kategorie.."
+          maxLength={15}
           value={category}
           onChange={(event) => setCategory(event.target.value)}
         />
         <input
           type="number"
           placeholder="Betrag.."
+          maxLength={8}
           value={amount}
           onChange={(event) =>
             setAmount(Math.abs(parseFloat(event.target.value)))

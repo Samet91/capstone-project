@@ -50,6 +50,7 @@ export default function TransactionForm({
             value={category}
             onChange={(event) => setCategory(event.target.value)}
           />
+          {!category ? <Warning>Bitte Kategorie hinzufügen!</Warning> : ''}
         </CatContainer>
         <AmountContainer>
           <Input
@@ -62,6 +63,7 @@ export default function TransactionForm({
               setAmount(Math.abs(parseFloat(event.target.value)))
             }
           />
+          {!category ? <Warning>Bitte Betrag hinzufügen!</Warning> : ''}
         </AmountContainer>
         <ButtonContainer>
           <Button onClick={(event) => addTransaction('income', event)}>
@@ -119,4 +121,8 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   width: 50%;
   padding: 5px;
+`
+
+const Warning = styled.span`
+  color: #d86d6d;
 `

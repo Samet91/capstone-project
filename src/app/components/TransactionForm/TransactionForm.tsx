@@ -66,12 +66,12 @@ export default function TransactionForm({
           {!category ? <Warning>Bitte Betrag hinzufügen!</Warning> : ''}
         </AmountContainer>
         <ButtonContainer>
-          <Button onClick={(event) => addTransaction('income', event)}>
+          <ButtonIncome onClick={(event) => addTransaction('income', event)}>
             Einnahmen
-          </Button>
-          <Button onClick={(event) => addTransaction('expense', event)}>
+          </ButtonIncome>
+          <ButtonExpense onClick={(event) => addTransaction('expense', event)}>
             Ausgaben
-          </Button>
+          </ButtonExpense>
         </ButtonContainer>
       </form>
     </div>
@@ -118,11 +118,32 @@ const ButtonContainer = styled.div`
   margin: 16px 0px 20px;
 `
 
-const Button = styled.button`
-  width: 50%;
+const ButtonIncome = styled.button`
+  width: 49%;
+  color: #121a12;
+  background-color: #1de01d;
+  border: none;
   padding: 5px;
+  border-radius: 5px;
+  letter-spacing: 0.3em;
+`
+
+const ButtonExpense = styled.button`
+  width: 49%;
+  margin-left: 2%;
+  color: #ebe3e3;
+  background-color: red;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  letter-spacing: 0.3em;
 `
 
 const Warning = styled.span`
-  color: #d86d6d;
+  color: #af4040;
+  font-size: 0.5em;
 `
+// const Button = styled.button`
+//   width: 50%;
+//   padding: 5px;
+// `

@@ -11,7 +11,7 @@ export default function Expense({ income, expense }: inOutProps): JSX.Element {
     <>
       <BalanceTitle>Bilanz</BalanceTitle>
       <Balance income={income} expense={expense}>
-        €{income - expense}
+        {income - expense}€
       </Balance>
       <IncExpContainer>
         <IncomeContainer>
@@ -30,17 +30,19 @@ export default function Expense({ income, expense }: inOutProps): JSX.Element {
 const BalanceTitle = styled.h2`
   display: flex;
   justify-content: center;
-  color: black;
+  color: #28d6b9;
 `
 
 const Balance = styled.h2<inOutProps>`
   display: flex;
   justify-content: center;
   margin-top: -20px;
-  font-weight: 400;
   line-height: 1.167;
   font-size: 3rem;
   color: ${(props) => (props.income - props.expense < 0 ? 'red' : 'green')};
+  border: solid 3px
+    ${(props) => (props.income - props.expense < 0 ? 'red' : 'green')};
+  border-radius: 10px;
 `
 
 const IncExpContainer = styled.div`
@@ -50,8 +52,7 @@ const IncExpContainer = styled.div`
 
 const IncomeContainer = styled.div`
   flex: 1 1;
-  background-color: rgb(20 20 41 / 50%) !important;
-  color: #f5f5f5 !important;
+  background-color: rgb(20 20 41 / 50%);
   padding: 10px;
   border-radius: 10px;
   margin-right: 5px;
@@ -60,7 +61,6 @@ const IncomeContainer = styled.div`
 const ExpenseContainer = styled.div`
   flex: 1 1;
   background-color: rgb(20 20 41 / 50%);
-  color: #f5f5f5;
   padding: 10px;
   border-radius: 10px;
   margin-left: 5px;

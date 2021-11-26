@@ -17,10 +17,10 @@ export default function TransactionOverview({
   return (
     <div>
       <H2>
-        Überblick{' '}
+        Überblick
         <IconArrow>
           <ArrowIcon />
-        </IconArrow>{' '}
+        </IconArrow>
       </H2>
 
       <ul>

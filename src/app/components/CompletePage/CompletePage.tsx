@@ -13,6 +13,11 @@ export default function CompletePage(): JSX.Element {
     setTransactions(newTransactions)
   }
 
+  function handleDeleteTransaction(id:number) {
+    const newTransactions = transactions.filter((transaction) => transaction.id !== id)
+    setTransactions(newTransactions)
+  }
+
   const income = transactions
     .filter(({ type }) => type === 'income')
     .reduce((sum, transaction) => sum + transaction.amount, 0)
@@ -24,7 +29,7 @@ export default function CompletePage(): JSX.Element {
   return (
     <>
       <Expense income={income} expense={expense} />
-      <TransactionOverview transactions={transactions} />
+      <TransactionOverview transactions={transactions} deleteTransaction={handleDeleteTransaction}/>
       <TransactionForm onNewTransaction={handleNewTransaction} />
     </>
   )

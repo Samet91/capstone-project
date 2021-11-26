@@ -1,13 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import type { TransactionProps } from '../TransactionForm/TransactionForm'
 
 export type InitialStateType = {
   transactions: TransactionProps[]
+  deleteTransaction: (id:number) => void
 }
 
-export default function TransactionOverview({
-  transactions,
+export default function TransactionOverview({ deleteTransaction,
+  transactions
 }: InitialStateType): JSX.Element {
   return (
     <div>
@@ -15,14 +17,32 @@ export default function TransactionOverview({
 
       <ul>
         {transactions.map((transaction: TransactionProps) => (
-          <li {...(transaction.amount < 0 ? '-' : '')}>
+          <Li key={transaction.id} {...(transaction.amount < 0 ? '-' : '')}>
+            <CategoryTitle>{transaction.category}</CategoryTitle>
+
             <span>
-              {transaction.category}€{Math.abs(transaction.amount)}
+              {' '}
+              €{Math.abs(transaction.amount)} ,-
+              <Button onClick={() => deleteTransaction(transaction.id)}>
+                X
+              </Button>
             </span>
-            <button>X</button>
-          </li>
+          </Li>
         ))}
       </ul>
     </div>
   )
 }
+
+const Li = styled.li`
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+`
+
+const CategoryTitle = styled.span`
+  margin-left: -40px;
+`
+const Button = styled.button`
+  border: transparent;
+`

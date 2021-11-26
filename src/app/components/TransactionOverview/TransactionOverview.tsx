@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import TrashIcon from '../Icons/TrashIcon'
 
 import type { TransactionProps } from '../TransactionForm/TransactionForm'
 
@@ -18,15 +19,15 @@ export default function TransactionOverview({
 
       <ul>
         {transactions.map((transaction: TransactionProps) => (
-          <Li key={transaction.id} {...(transaction.amount < 0 ? '-' : '')}>
+          <Li key={transaction.id}>
             <CategoryTitle>{transaction.category}</CategoryTitle>
 
             <span>
               {' '}
               €{Math.abs(transaction.amount)} ,-
-              <Button onClick={() => deleteTransaction(transaction.id)}>
-                X
-              </Button>
+              <Icon>
+              <TrashIcon onClick={() => deleteTransaction(transaction.id)} />
+              </Icon>
             </span>
           </Li>
         ))}
@@ -44,6 +45,9 @@ const Li = styled.li`
 const CategoryTitle = styled.span`
   margin-left: -40px;
 `
-const Button = styled.button`
-  border: transparent;
+
+const Icon = styled.div`
+margin-top: 10px;
+  display: inline-block;
+
 `

@@ -67,18 +67,17 @@ const ExpenseContainer = styled.div`
 `
 
 const IncomeTitle = styled.span`
-  color: black;
+  color: #1cd61c;
 `
 
 const IncomePlace = styled.h2`
-  color: black;
+  color: #1cd61c;
 `
 
 const ExpenseTitle = styled.span`
-  color: black;
-  align-content: center;
+  color: #c22727;
 `
 
 const ExpensePlace = styled.h2`
-  color: black;
+  color: #c22727;
 `

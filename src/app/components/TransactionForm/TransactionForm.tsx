@@ -45,7 +45,7 @@ export default function TransactionForm({
           <Input
             type="text"
             placeholder="Kategorie.."
-            maxLength={15}
+            maxLength={20}
             value={category}
             onChange={(event) => setCategory(event.target.value)}
           />
@@ -115,7 +115,7 @@ const Input = styled.input`
 `
 
 const ButtonContainer = styled.div`
-  margin: 16px 0px 0px;
+  margin: 16px 0px 20px;
 `
 
 const Button = styled.button`

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { idGenerator } from '../Utils'
 import styled from 'styled-components'
 
-export type Transaction = {
+export type TransactionProps = {
   id: number
   category: string
   amount: number
@@ -10,7 +10,7 @@ export type Transaction = {
 }
 
 type TransactionFormProps = {
-  onNewTransaction: (data: Transaction) => void
+  onNewTransaction: (data: TransactionProps) => void
 }
 
 export default function TransactionForm({

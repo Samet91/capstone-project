@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import Expense from '../Expense/Expense'
 import TransactionForm from '../TransactionForm/TransactionForm'
 
-import type { Transaction } from '../TransactionForm/TransactionForm'
+import type { TransactionProps } from '../TransactionForm/TransactionForm'
 import TransactionOverview from '../TransactionOverview/TransactionOverview'
 
 export default function CompletePage(): JSX.Element {
-  const [transactions, setTransactions] = useState<Transaction[]>([])
+  const [transactions, setTransactions] = useState<TransactionProps[]>([])
 
-  function handleNewTransaction(transaction: Transaction) {
+  function handleNewTransaction(transaction: TransactionProps) {
     const newTransactions = [...transactions, transaction]
     setTransactions(newTransactions)
   }

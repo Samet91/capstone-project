@@ -1,9 +1,9 @@
 import React from 'react'
 
-import type { Transaction } from '../TransactionForm/TransactionForm'
+import type { TransactionProps } from '../TransactionForm/TransactionForm'
 
 export type InitialStateType = {
-  transactions: Transaction[]
+  transactions: TransactionProps[]
 }
 
 export default function TransactionOverview({
@@ -14,7 +14,7 @@ export default function TransactionOverview({
       <h2>Überblick:</h2>
 
       <ul>
-        {transactions.map((transaction: Transaction) => (
+        {transactions.map((transaction: TransactionProps) => (
           <li {...(transaction.amount < 0 ? '-' : '')}>
             <span>
               {transaction.category}€{Math.abs(transaction.amount)}

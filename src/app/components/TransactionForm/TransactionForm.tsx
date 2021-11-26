@@ -39,7 +39,7 @@ export default function TransactionForm({
 
   return (
     <div>
-      <H2>Transaktion:</H2>
+      <H2>Transaktion</H2>
       <form>
         <CatContainer>
           <Input
@@ -84,7 +84,7 @@ const H2 = styled.h2`
   line-height: 1.6;
   letter-spacing: 0.1em;
   margin: 0;
-  color: #131111;
+  color: #2d2f9f;
 `
 
 const CatContainer = styled.div`

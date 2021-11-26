@@ -5,11 +5,12 @@ import type { TransactionProps } from '../TransactionForm/TransactionForm'
 
 export type InitialStateType = {
   transactions: TransactionProps[]
-  deleteTransaction: (id:number) => void
+  deleteTransaction: (id: number) => void
 }
 
-export default function TransactionOverview({ deleteTransaction,
-  transactions
+export default function TransactionOverview({
+  deleteTransaction,
+  transactions,
 }: InitialStateType): JSX.Element {
   return (
     <div>

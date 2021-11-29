@@ -30,8 +30,7 @@ export default function TransactionOverview({
               <CategoryTitle>{transaction.category}</CategoryTitle>
 
               <span>
-                {' '}
-                {/* €{transaction.amount ? Math.abs(transaction.amount): null} ,- */}
+                €{transaction.amount ? Math.abs(transaction.amount) : null} ,-
                 <Icon>
                   <TrashIcon
                     onClick={() => deleteTransaction(transaction.id)}

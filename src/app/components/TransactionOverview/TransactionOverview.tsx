@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import ArrowIcon from '../Icons/ArrowIcon'
 import TrashIcon from '../Icons/TrashIcon'
 
-import type { TransactionProps } from '../TransactionForm/TransactionForm'
+import type { TransactionProps } from '../../../types'
 
 export type InitialStateType = {
   transactions: TransactionProps[]

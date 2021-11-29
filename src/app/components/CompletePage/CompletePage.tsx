@@ -2,7 +2,7 @@ import React from 'react'
 import Expense from '../Expense/Expense'
 import TransactionForm from '../TransactionForm/TransactionForm'
 
-import type { TransactionProps } from '../TransactionForm/TransactionForm'
+import type { TransactionProps } from '../../../types'
 import TransactionOverview from '../TransactionOverview/TransactionOverview'
 import useLocalStorage from '../../hooks/useLocalStorage'
 

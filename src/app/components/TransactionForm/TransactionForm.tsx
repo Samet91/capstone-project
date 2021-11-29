@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { idGenerator } from '../Utils'
 import styled from 'styled-components'
 
-export type Transaction = {
+export type TransactionProps = {
   id: number
   category: string
   amount: number
@@ -10,7 +10,7 @@ export type Transaction = {
 }
 
 type TransactionFormProps = {
-  onNewTransaction: (data: Transaction) => void
+  onNewTransaction: (data: TransactionProps) => void
 }
 
 export default function TransactionForm({
@@ -39,30 +39,23 @@ export default function TransactionForm({
 
   return (
     <div>
-      <H2>Transaktion:</H2>
+      <H2>Transaktion</H2>
       <form>
         <CatContainer>
           <Input
             type="text"
             placeholder="Kategorie.."
-
-            required
-
-            maxLength={15}
+            maxLength={20}
             value={category}
             onChange={(event) => setCategory(event.target.value)}
           />
 
           {!category ? <Warning>Bitte Kategorie hinzufügen!</Warning> : ''}
-
         </CatContainer>
         <AmountContainer>
           <Input
             type="number"
             placeholder="Betrag.."
-
-            required
-
             maxLength={8}
             value={amount}
             onChange={(event) =>
@@ -71,15 +64,14 @@ export default function TransactionForm({
           />
 
           {!category ? <Warning>Bitte Betrag hinzufügen!</Warning> : ''}
-
         </AmountContainer>
         <ButtonContainer>
-          <Button onClick={(event) => addTransaction('income', event)}>
+          <ButtonIncome onClick={(event) => addTransaction('income', event)}>
             Einnahmen
-          </Button>
-          <Button onClick={(event) => addTransaction('expense', event)}>
+          </ButtonIncome>
+          <ButtonExpense onClick={(event) => addTransaction('expense', event)}>
             Ausgaben
-          </Button>
+          </ButtonExpense>
         </ButtonContainer>
       </form>
     </div>
@@ -92,7 +84,7 @@ const H2 = styled.h2`
   line-height: 1.6;
   letter-spacing: 0.1em;
   margin: 0;
-  color: #131111;
+  color: #2d2f9f;
 `
 
 const CatContainer = styled.div`
@@ -123,14 +115,35 @@ const Input = styled.input`
 `
 
 const ButtonContainer = styled.div`
-  margin: 16px 0px 0px;
+  margin: 16px 0px 20px;
 `
 
-const Button = styled.button`
-  width: 50%;
+const ButtonIncome = styled.button`
+  width: 49%;
+  color: #121a12;
+  background-color: #1de01d;
+  border: none;
   padding: 5px;
+  border-radius: 5px;
+  letter-spacing: 0.3em;
+`
+
+const ButtonExpense = styled.button`
+  width: 49%;
+  margin-left: 2%;
+  color: #ebe3e3;
+  background-color: red;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  letter-spacing: 0.3em;
 `
 
 const Warning = styled.span`
-  color: #d86d6d;
-
+  color: #af4040;
+  font-size: 0.5em;
+`
+// const Button = styled.button`
+//   width: 50%;
+//   padding: 5px;
+// `

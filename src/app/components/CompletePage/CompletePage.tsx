@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Expense from '../Expense/Expense'
 import TransactionForm from '../TransactionForm/TransactionForm'
 
 import type { TransactionProps } from '../TransactionForm/TransactionForm'
 import TransactionOverview from '../TransactionOverview/TransactionOverview'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 export default function CompletePage(): JSX.Element {
-  const [transactions, setTransactions] = useState<TransactionProps[]>([])
+  const [transactions, setTransactions] = useLocalStorage<TransactionProps[]>(
+    'transactions',
+    []
+  )
 
   function handleNewTransaction(transaction: TransactionProps) {
     const newTransactions = [...transactions, transaction]

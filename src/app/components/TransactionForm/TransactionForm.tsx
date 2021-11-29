@@ -93,7 +93,7 @@ const CatContainer = styled.div`
   min-width: 0;
   flex-direction: column;
   vertical-align: top;
-  margin-top: 10px;
+  margin-top: 9px;
   width: 100%;
 `
 

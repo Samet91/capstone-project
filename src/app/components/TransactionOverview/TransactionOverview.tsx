@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import ArrowIcon from '../Icons/ArrowIcon'
 import TrashIcon from '../Icons/TrashIcon'
 
-import type { TransactionProps } from '../TransactionForm/TransactionForm'
+import type { TransactionProps } from '../../../types'
 
 export type InitialStateType = {
   transactions: TransactionProps[]
@@ -24,19 +24,22 @@ export default function TransactionOverview({
       </H2>
 
       <ul>
-        {transactions.map((transaction: TransactionProps) => (
-          <Li key={transaction.id}>
-            <CategoryTitle>{transaction.category}</CategoryTitle>
+        {transactions &&
+          transactions.map((transaction: TransactionProps) => (
+            <Li key={transaction.id}>
+              <CategoryTitle>{transaction.category}</CategoryTitle>
 
-            <span>
-              {' '}
-              €{Math.abs(transaction.amount)} ,-
-              <Icon>
-                <TrashIcon onClick={() => deleteTransaction(transaction.id)} />
-              </Icon>
-            </span>
-          </Li>
-        ))}
+              <span>
+                {' '}
+                {/* €{transaction.amount ? Math.abs(transaction.amount): null} ,- */}
+                <Icon>
+                  <TrashIcon
+                    onClick={() => deleteTransaction(transaction.id)}
+                  />
+                </Icon>
+              </span>
+            </Li>
+          ))}
       </ul>
     </div>
   )

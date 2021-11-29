@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
 import { idGenerator } from '../Utils'
 import styled from 'styled-components'
-
-export type TransactionProps = {
-  id: number
-  category: string
-  amount: number
-  type: string
-}
+import type { TransactionProps } from '../../../types'
 
 type TransactionFormProps = {
   onNewTransaction: (data: TransactionProps) => void
@@ -93,7 +87,7 @@ const CatContainer = styled.div`
   min-width: 0;
   flex-direction: column;
   vertical-align: top;
-  margin-top: 10px;
+  margin-top: 9px;
   width: 100%;
 `
 

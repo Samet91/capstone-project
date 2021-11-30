@@ -1,12 +1,12 @@
 import React from 'react'
-import Expense from '../Expense/Expense'
-import TransactionForm from '../TransactionForm/TransactionForm'
+import TransactionForm from '../components/TransactionForm/TransactionForm'
+import Expense from '../components/Expense/Expense'
 
-import type { TransactionProps } from '../../../types'
-import TransactionOverview from '../TransactionOverview/TransactionOverview'
-import useLocalStorage from '../../hooks/useLocalStorage'
+import TransactionOverview from '../components/TransactionOverview/TransactionOverview'
+import useLocalStorage from '../hooks/useLocalStorage'
+import type { TransactionProps } from '../../types'
 
-export default function CompletePage(): JSX.Element {
+export default function Dashboard(): JSX.Element {
   const [transactions, setTransactions] = useLocalStorage<TransactionProps[]>(
     'transactions',
     []

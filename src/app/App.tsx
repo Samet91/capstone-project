@@ -1,12 +1,16 @@
 import React from 'react'
-
-import CompletePage from './components/CompletePage/CompletePage'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import AddCosts from './Pages/AddCosts'
+import Dashboard from './Pages/Dashboard'
 
 function App(): JSX.Element {
   return (
-    <>
-      <CompletePage />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="addTodo" element={<AddCosts />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

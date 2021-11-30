@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import ArrowIcon from '../Icons/ArrowIcon'
 import TrashIcon from '../Icons/TrashIcon'
@@ -14,31 +14,42 @@ export default function TransactionOverview({
   deleteTransaction,
   transactions,
 }: InitialStateType): JSX.Element {
+  const [showTransaction, setShowTransaction] = useState<boolean>(false)
+
+  function handleOnclick() {
+    setShowTransaction(!showTransaction)
+  }
+
   return (
     <div>
       <H2>
         Überblick
         <IconArrow>
-          <ArrowIcon />
+          <ArrowIcon
+            onClick={() => {
+              handleOnclick()
+            }}
+          />
         </IconArrow>
       </H2>
 
       <ul>
-        {transactions &&
-          transactions.map((transaction: TransactionProps) => (
-            <Li key={transaction.id}>
-              <CategoryTitle>{transaction.category}</CategoryTitle>
+        {transactions && showTransaction
+          ? transactions.map((transaction: TransactionProps) => (
+              <Li key={transaction.id}>
+                <CategoryTitle>{transaction.category}</CategoryTitle>
 
-              <span>
-                €{transaction.amount ? Math.abs(transaction.amount) : null} ,-
-                <Icon>
-                  <TrashIcon
-                    onClick={() => deleteTransaction(transaction.id)}
-                  />
-                </Icon>
-              </span>
-            </Li>
-          ))}
+                <Amount>
+                  €{transaction.amount ? Math.abs(transaction.amount) : null} ,-
+                  <Icon>
+                    <TrashIcon
+                      onClick={() => deleteTransaction(transaction.id)}
+                    />
+                  </Icon>
+                </Amount>
+              </Li>
+            ))
+          : null}
       </ul>
     </div>
   )
@@ -74,6 +85,9 @@ const CategoryTitle = styled.span`
 `
 
 const Icon = styled.div`
-  margin-top: 10px;
   display: inline-block;
+`
+
+const Amount = styled.span`
+  display: flex;
 `

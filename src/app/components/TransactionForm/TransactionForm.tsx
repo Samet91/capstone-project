@@ -137,7 +137,3 @@ const Warning = styled.span`
   color: #af4040;
   font-size: 0.5em;
 `
-// const Button = styled.button`
-//   width: 50%;
-//   padding: 5px;
-// `

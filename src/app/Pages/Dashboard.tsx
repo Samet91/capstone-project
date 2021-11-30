@@ -5,6 +5,9 @@ import Expense from '../components/Expense/Expense'
 import TransactionOverview from '../components/TransactionOverview/TransactionOverview'
 import useLocalStorage from '../hooks/useLocalStorage'
 import type { TransactionProps } from '../../types'
+import Button from '../components/Button/Button'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export default function Dashboard(): JSX.Element {
   const [transactions, setTransactions] = useLocalStorage<TransactionProps[]>(
@@ -40,6 +43,14 @@ export default function Dashboard(): JSX.Element {
         deleteTransaction={handleDeleteTransaction}
       />
       <TransactionForm onNewTransaction={handleNewTransaction} />
+      <Link to="AddCosts">
+        <StyledButton>Costs</StyledButton>
+      </Link>
     </>
   )
 }
+
+const StyledButton = styled(Button)`
+    display: flex;
+    
+`

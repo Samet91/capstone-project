@@ -36,7 +36,7 @@ export default function TransactionOverview({
       <ul>
         {transactions && showTransaction
           ? transactions.map((transaction: TransactionProps) => (
-              <Li key={transaction.id}>
+              <Li key={transaction.id} type={transaction.type}>
                 <CategoryTitle>{transaction.category}</CategoryTitle>
 
                 <Amount>
@@ -74,14 +74,15 @@ const IconArrow = styled.span`
   align-self: center;
 `
 
-const Li = styled.li`
+const Li = styled.li<Partial<TransactionProps>>`
   list-style: none;
   display: flex;
   justify-content: space-between;
+  color: ${(props) => (props.type === 'income' ? 'green' : 'red')};
 `
 
 const CategoryTitle = styled.span`
-  margin-left: -40px;
+  margin-left: -35px;
 `
 
 const Icon = styled.div`

@@ -87,7 +87,7 @@ const CatContainer = styled.div`
   min-width: 0;
   flex-direction: column;
   vertical-align: top;
-  margin-top: 9px;
+  margin-top: 10px;
   width: 100%;
 `
 
@@ -117,9 +117,10 @@ const ButtonIncome = styled.button`
   color: #121a12;
   background-color: #1de01d;
   border: none;
-  padding: 5px;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
   letter-spacing: 0.3em;
+  font-weight: bold;
 `
 
 const ButtonExpense = styled.button`
@@ -131,6 +132,8 @@ const ButtonExpense = styled.button`
   padding: 5px;
   border-radius: 5px;
   letter-spacing: 0.3em;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
 `
 
 const Warning = styled.span`

@@ -8,7 +8,7 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="addTodo" element={<AddCosts />} />
+        <Route path="AddCosts" element={<AddCosts />} />
       </Routes>
     </BrowserRouter>
   )

@@ -9,7 +9,6 @@ type inOutProps = {
 export default function Expense({ income, expense }: inOutProps): JSX.Element {
   return (
     <>
-      <BalanceTitle>Bilanz</BalanceTitle>
       <Balance income={income} expense={expense}>
         {income - expense}€
       </Balance>
@@ -27,16 +26,10 @@ export default function Expense({ income, expense }: inOutProps): JSX.Element {
   )
 }
 
-const BalanceTitle = styled.h2`
-  display: flex;
-  justify-content: center;
-  color: #28d6b9;
-`
-
 const Balance = styled.h2<inOutProps>`
   display: flex;
   justify-content: center;
-  margin-top: -20px;
+  margin-top: 10px;
   line-height: 1.167;
   font-size: 3rem;
   color: ${(props) => (props.income - props.expense < 0 ? 'red' : 'green')};

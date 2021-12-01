@@ -12,10 +12,12 @@ export default function TransactionForm({
 }: TransactionFormProps): JSX.Element {
   const [category, setCategory] = useState<string>('')
   const [amount, setAmount] = useState<number>(0)
+  const [date, setDate] = useState<string>('')
 
   function addTransaction(
     type: string,
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    date: string
   ) {
     event.preventDefault()
 
@@ -24,11 +26,13 @@ export default function TransactionForm({
       category: category,
       amount: amount,
       type: type,
+      date: date,
     }
     onNewTransaction(data)
 
     setCategory('')
     setAmount(0)
+    setDate('')
   }
 
   return (
@@ -57,13 +61,27 @@ export default function TransactionForm({
             }
           />
 
-          {!category ? <Warning>Bitte Betrag hinzufügen!</Warning> : ''}
+          {!amount ? <Warning>Bitte Betrag hinzufügen!</Warning> : ''}
+        </AmountContainer>
+        <AmountContainer>
+          <Input
+            type="date"
+            placeholder="Betrag.."
+            value={date}
+            onChange={(event) => setDate(event.target.value)}
+          />
+
+          {!amount ? <Warning>Bitte Betrag hinzufügen!</Warning> : ''}
         </AmountContainer>
         <ButtonContainer>
-          <ButtonIncome onClick={(event) => addTransaction('income', event)}>
+          <ButtonIncome
+            onClick={(event) => addTransaction('income', event, date)}
+          >
             Einnahmen
           </ButtonIncome>
-          <ButtonExpense onClick={(event) => addTransaction('expense', event)}>
+          <ButtonExpense
+            onClick={(event) => addTransaction('expense', event, date)}
+          >
             Ausgaben
           </ButtonExpense>
         </ButtonContainer>

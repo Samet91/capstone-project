@@ -3,6 +3,7 @@ export type TransactionProps = {
   category: string
   amount: number
   type: string
+  date: string
 }
 
 export type Costs = {

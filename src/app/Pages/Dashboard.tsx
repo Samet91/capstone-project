@@ -2,7 +2,6 @@ import React from 'react'
 import TransactionForm from '../components/TransactionForm/TransactionForm'
 import Expense from '../components/Expense/Expense'
 
-import TransactionOverview from '../components/TransactionOverview/TransactionOverview'
 import useLocalStorage from '../hooks/useLocalStorage'
 import type { TransactionProps } from '../../types'
 import Button from '../components/Button/Button'
@@ -21,13 +20,6 @@ export default function Dashboard(): JSX.Element {
     setTransactions(newTransactions)
   }
 
-  function handleDeleteTransaction(id: number) {
-    const newTransactions = transactions.filter(
-      (transaction) => transaction.id !== id
-    )
-    setTransactions(newTransactions)
-  }
-
   const income = transactions
     .filter(({ type }) => type === 'income')
     .reduce((sum, transaction) => sum + transaction.amount, 0)
@@ -39,10 +31,7 @@ export default function Dashboard(): JSX.Element {
   return (
     <>
       <Expense income={income} expense={expense} />
-      <TransactionOverview
-        transactions={transactions}
-        deleteTransaction={handleDeleteTransaction}
-      />
+
       <TransactionForm onNewTransaction={handleNewTransaction} />
       <Link to="AddCosts">
         <StyledButton>

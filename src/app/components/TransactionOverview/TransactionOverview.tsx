@@ -34,23 +34,22 @@ export default function TransactionOverview({
       </H2>
 
       <ul>
-        {transactions && 
-           transactions.map((transaction: TransactionProps) => (
-              <Li key={transaction.id} type={transaction.type}>
-                <span>{transaction.date}</span>
-                <CategoryTitle>{transaction.category}</CategoryTitle>
+        {transactions &&
+          transactions.map((transaction: TransactionProps) => (
+            <Li key={transaction.id} type={transaction.type}>
+              <span>{transaction.date}</span>
+              <CategoryTitle>{transaction.category}</CategoryTitle>
 
-                <Amount>
-                  €{transaction.amount ? Math.abs(transaction.amount) : null} ,-
-                  <Icon>
-                    <TrashIcon
-                      onClick={() => deleteTransaction(transaction.id)}
-                    />
-                  </Icon>
-                </Amount>
-              </Li>
-            ))
-          }
+              <Amount>
+                €{transaction.amount ? Math.abs(transaction.amount) : null} ,-
+                <Icon>
+                  <TrashIcon
+                    onClick={() => deleteTransaction(transaction.id)}
+                  />
+                </Icon>
+              </Amount>
+            </Li>
+          ))}
       </ul>
     </div>
   )
@@ -82,9 +81,7 @@ const Li = styled.li<Partial<TransactionProps>>`
   color: ${(props) => (props.type === 'income' ? 'green' : 'red')};
 `
 
-const CategoryTitle = styled.span`
-
-`
+const CategoryTitle = styled.span``
 
 const Icon = styled.div`
   display: inline-block;

@@ -1,14 +1,14 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import AddCosts from './Pages/TransactionHistory'
 import Dashboard from './Pages/Dashboard'
+import TransactionHistory from './Pages/TransactionHistory'
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="AddCosts" element={<AddCosts />} />
+        <Route path="Transaction" element={<TransactionHistory />} />
       </Routes>
     </BrowserRouter>
   )

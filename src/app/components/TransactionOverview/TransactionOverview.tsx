@@ -44,6 +44,13 @@ export default function TransactionOverview({
                 </Amount>
               </Li>
             ))}
+        {transactions.length === 0 ? (
+          <MissingTransactions>
+            <H3>Keine Transaktionen vorhanden!</H3>
+          </MissingTransactions>
+        ) : (
+          ''
+        )}
       </TransList>
     </div>
   )
@@ -72,13 +79,15 @@ const Li = styled.li<Partial<TransactionProps>>`
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
-  background-color: black;
+  background-color: #12151b;
   padding: 10px;
   border-radius: 5px;
   color: ${(props) => (props.type === 'income' ? 'green' : 'red')};
 `
 
-const Date = styled.span``
+const Date = styled.span`
+  color: aquamarine;
+`
 
 const CategoryTitle = styled.span``
 
@@ -88,4 +97,14 @@ const Icon = styled.div`
 
 const Amount = styled.span`
   display: flex;
+`
+
+const MissingTransactions = styled.article`
+  display: flex;
+  justify-content: center;
+`
+
+const H3 = styled.h3`
+  font-family: monospace;
+  color: red;
 `

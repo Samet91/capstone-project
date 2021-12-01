@@ -71,7 +71,7 @@ export default function TransactionForm({
             onChange={(event) => setDate(event.target.value)}
           />
 
-          {!amount ? <Warning>Bitte Betrag hinzufügen!</Warning> : ''}
+          {!date ? <Warning>Bitte Betrag hinzufügen!</Warning> : ''}
         </AmountContainer>
         <ButtonContainer>
           <ButtonIncome

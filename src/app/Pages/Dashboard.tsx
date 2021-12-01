@@ -33,7 +33,7 @@ export default function Dashboard(): JSX.Element {
       <Expense income={income} expense={expense} />
 
       <TransactionForm onNewTransaction={handleNewTransaction} />
-      <Link to="AddCosts">
+      <Link to="Transaction">
         <StyledButton>
           <ButtonText>Fixkosten</ButtonText>
           <Icon>

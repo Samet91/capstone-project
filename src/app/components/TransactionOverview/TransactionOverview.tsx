@@ -34,9 +34,10 @@ export default function TransactionOverview({
       </H2>
 
       <ul>
-        {transactions && showTransaction
-          ? transactions.map((transaction: TransactionProps) => (
+        {transactions && 
+           transactions.map((transaction: TransactionProps) => (
               <Li key={transaction.id} type={transaction.type}>
+                <span>{transaction.date}</span>
                 <CategoryTitle>{transaction.category}</CategoryTitle>
 
                 <Amount>
@@ -49,7 +50,7 @@ export default function TransactionOverview({
                 </Amount>
               </Li>
             ))
-          : null}
+          }
       </ul>
     </div>
   )
@@ -82,7 +83,7 @@ const Li = styled.li<Partial<TransactionProps>>`
 `
 
 const CategoryTitle = styled.span`
-  margin-left: -35px;
+
 `
 
 const Icon = styled.div`

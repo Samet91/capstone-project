@@ -4,3 +4,10 @@ export type TransactionProps = {
   amount: number
   type: string
 }
+
+export type Costs = {
+  title: string
+  id?: number
+  amount: number
+  date: string
+}

@@ -17,46 +17,64 @@ export default function TransactionOverview({
     <div>
       <H2>TRANSAKTIONSHISTORY</H2>
 
-      <ul>
+      <TransList>
         {transactions &&
-          transactions.map((transaction: TransactionProps) => (
-            <Li key={transaction.id} type={transaction.type}>
-              <Date>{transaction.date}</Date>
-              <CategoryTitle>{transaction.category}</CategoryTitle>
+          transactions
+            .sort((a, b) => {
+              if (a.date > b.date) {
+                return -1
+              }
+              if (a.date < b.date) {
+                return 1
+              }
+              return 0
+            })
+            .map((transaction: TransactionProps) => (
+              <Li key={transaction.id} type={transaction.type}>
+                <Date>{transaction.date}</Date>
+                <CategoryTitle>{transaction.category}</CategoryTitle>
 
-              <Amount>
-                €{transaction.amount ? Math.abs(transaction.amount) : null} ,-
-                <Icon>
-                  <TrashIcon
-                    onClick={() => deleteTransaction(transaction.id)}
-                  />
-                </Icon>
-              </Amount>
-            </Li>
-          ))}
-      </ul>
+                <Amount>
+                  €{transaction.amount ? Math.abs(transaction.amount) : null}
+                  <Icon>
+                    <TrashIcon
+                      onClick={() => deleteTransaction(transaction.id)}
+                    />
+                  </Icon>
+                </Amount>
+              </Li>
+            ))}
+      </TransList>
     </div>
   )
 }
+
+const TransList = styled.ul`
+  padding: 0;
+`
 
 const H2 = styled.h2`
   font-size: 1.25rem;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.6;
-  letter-spacing: 0.27em;
+  letter-spacing: 0.15em;
   margin-top: 20px;
   color: #131111;
   background-color: steelblue;
   padding: 5px;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
 `
 
 const Li = styled.li<Partial<TransactionProps>>`
   list-style: none;
   display: flex;
   justify-content: space-between;
-  margin-left: -38px;
   margin-top: 5px;
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
   color: ${(props) => (props.type === 'income' ? 'green' : 'red')};
 `
 

@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import ArrowIcon from '../Icons/ArrowIcon'
 import TrashIcon from '../Icons/TrashIcon'
 
 import type { TransactionProps } from '../../../types'
@@ -14,30 +13,15 @@ export default function TransactionOverview({
   deleteTransaction,
   transactions,
 }: InitialStateType): JSX.Element {
-  const [showTransaction, setShowTransaction] = useState<boolean>(false)
-
-  function handleOnclick() {
-    setShowTransaction(!showTransaction)
-  }
-
   return (
     <div>
-      <H2>
-        Überblick
-        <IconArrow>
-          <ArrowIcon
-            onClick={() => {
-              handleOnclick()
-            }}
-          />
-        </IconArrow>
-      </H2>
+      <H2>TRANSAKTIONSHISTORY</H2>
 
       <ul>
         {transactions &&
           transactions.map((transaction: TransactionProps) => (
             <Li key={transaction.id} type={transaction.type}>
-              <span>{transaction.date}</span>
+              <Date>{transaction.date}</Date>
               <CategoryTitle>{transaction.category}</CategoryTitle>
 
               <Amount>
@@ -59,27 +43,24 @@ const H2 = styled.h2`
   font-size: 1.25rem;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.6;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.27em;
   margin-top: 20px;
   color: #131111;
   background-color: steelblue;
   padding: 5px;
   border-radius: 5px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-`
-
-const IconArrow = styled.span`
-  grid-column: 4/5;
-  align-self: center;
 `
 
 const Li = styled.li<Partial<TransactionProps>>`
   list-style: none;
   display: flex;
   justify-content: space-between;
+  margin-left: -38px;
+  margin-top: 5px;
   color: ${(props) => (props.type === 'income' ? 'green' : 'red')};
 `
+
+const Date = styled.span``
 
 const CategoryTitle = styled.span``
 

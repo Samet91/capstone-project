@@ -15,9 +15,21 @@ export default function Dashboard(): JSX.Element {
     []
   )
 
-  function handleNewTransaction(transaction: TransactionProps) {
+  async function handleNewTransaction(transaction: TransactionProps) {
     const newTransactions = [...transactions, transaction]
     setTransactions(newTransactions)
+    const response = await fetch('/costs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(transaction),
+    })
+    if (response.status === 200) {
+      console.log('added in database')
+    } else {
+      console.log('scheiße gelaufen')
+    }
   }
 
   const income = transactions

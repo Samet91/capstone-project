@@ -71,7 +71,7 @@ export default function TransactionForm({
             onChange={(event) => setDate(event.target.value)}
           />
 
-          {!amount ? <Warning>Bitte Betrag hinzufügen!</Warning> : ''}
+          {!date ? <Warning>Bitte Datum hinzufügen!</Warning> : ''}
         </AmountContainer>
         <ButtonContainer>
           <ButtonIncome
@@ -95,7 +95,7 @@ const H2 = styled.h2`
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.6;
   letter-spacing: 0.1em;
-  margin: 0;
+  margin: 20px 0 0;
   color: #2d2f9f;
 `
 
@@ -156,5 +156,5 @@ const ButtonExpense = styled.button`
 
 const Warning = styled.span`
   color: #af4040;
-  font-size: 0.5em;
+  font-size: 0.7em;
 `

@@ -30,12 +30,13 @@ export default function Dashboard(): JSX.Element {
 
   return (
     <>
+      <H2>Wie viel bleibt denn übrig?</H2>
       <Expense income={income} expense={expense} />
 
       <TransactionForm onNewTransaction={handleNewTransaction} />
-      <Link to="AddCosts">
+      <Link to="Transaction">
         <StyledButton>
-          <ButtonText>Fixkosten</ButtonText>
+          <ButtonText>Übersicht</ButtonText>
           <Icon>
             <ArrowIconRight />
           </Icon>
@@ -44,6 +45,12 @@ export default function Dashboard(): JSX.Element {
     </>
   )
 }
+
+const H2 = styled.h2`
+  display: flex;
+  justify-content: center;
+  color: steelblue;
+`
 
 const StyledButton = styled(Button)`
   font-weight: bold;

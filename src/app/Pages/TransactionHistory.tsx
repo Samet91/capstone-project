@@ -27,12 +27,11 @@ export default function TransactionHistory(): JSX.Element {
         deleteTransaction={handleDeleteTransaction}
       />
       <Link to="/">
-        <StyledButton>
+        <BackButton>
           <Icon>
             <ArrowIconRight />
           </Icon>
-          <ButtonText>Startseite</ButtonText>
-        </StyledButton>
+        </BackButton>
       </Link>
     </Container>
   )
@@ -43,25 +42,14 @@ const Container = styled.div`
   grid-template-rows: auto 60px;
 `
 
-const StyledButton = styled(Button)`
+const BackButton = styled(Button)`
   font-weight: bold;
   font-size: 1rem;
   background-color: steelblue;
   border: none;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  border: none;
-  grid-template-rows: 25px auto;
 `
 
 const Icon = styled.span`
-  margin-left: -40px;
   transform: rotateY(180deg);
-`
-
-const ButtonText = styled.span`
-  align-self: center;
-  line-height: 1.6;
-  letter-spacing: 0.1em;
-  grid-column: 5/6;
 `

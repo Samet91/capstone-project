@@ -14,7 +14,7 @@ export default function TransactionOverview({
   transactions,
 }: InitialStateType): JSX.Element {
   return (
-    <div>
+    <Section>
       <H2>TRANSAKTIONSHISTORY</H2>
 
       <TransList>
@@ -32,7 +32,7 @@ export default function TransactionOverview({
             .map((transaction: TransactionProps) => (
               <Li key={transaction.id} type={transaction.type}>
                 <Date>{transaction.date}</Date>
-                <CategoryTitle>{transaction.category}</CategoryTitle>
+                <span>{transaction.category}</span>
 
                 <Amount>
                   €{transaction.amount ? Math.abs(transaction.amount) : null}
@@ -52,9 +52,14 @@ export default function TransactionOverview({
           ''
         )}
       </TransList>
-    </div>
+    </Section>
   )
 }
+
+const Section = styled.section`
+  display: grid;
+  grid-template-rows: 80px auto;
+`
 
 const TransList = styled.ul`
   padding: 0;
@@ -78,18 +83,17 @@ const Li = styled.li<Partial<TransactionProps>>`
   list-style: none;
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
+  margin-top: 0.5em;
   background-color: #12151b;
-  padding: 10px;
+  padding: 1.5em;
   border-radius: 5px;
+  overflow-y: auto;
   color: ${(props) => (props.type === 'income' ? 'green' : 'red')};
 `
 
 const Date = styled.span`
   color: aquamarine;
 `
-
-const CategoryTitle = styled.span``
 
 const Icon = styled.div`
   display: inline-block;

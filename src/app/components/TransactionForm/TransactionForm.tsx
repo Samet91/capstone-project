@@ -22,7 +22,7 @@ export default function TransactionForm({
     event.preventDefault()
 
     const data = {
-      id: idGenerator(),
+      _id: idGenerator(),
       category: category,
       amount: amount,
       type: type,

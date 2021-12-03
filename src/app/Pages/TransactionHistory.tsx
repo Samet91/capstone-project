@@ -1,17 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import type { TransactionProps } from '../../types'
 import Button from '../components/Button/Button'
 import ArrowIconRight from '../components/Icons/ArrowIconRight'
 import TransactionOverview from '../components/TransactionOverview/TransactionOverview'
-import useLocalStorage from '../hooks/useLocalStorage'
 
 export default function TransactionHistory(): JSX.Element {
-  const [transactions, setTransactions] = useLocalStorage<TransactionProps[]>(
-    'transactions',
-    []
-  )
+  const [transactions, setTransactions] = useState<TransactionProps[]>([])
 
   async function handleDeleteTransaction(id: number) {
     const newTransactions = transactions.filter(

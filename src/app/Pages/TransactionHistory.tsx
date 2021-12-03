@@ -13,11 +13,19 @@ export default function TransactionHistory(): JSX.Element {
     []
   )
 
-  function handleDeleteTransaction(id: number) {
+  async function handleDeleteTransaction(id: number) {
     const newTransactions = transactions.filter(
-      (transaction) => transaction.id !== id
+      (transaction) => transaction._id !== id
     )
     setTransactions(newTransactions)
+    const response = await fetch(`/delete/${id}`, {
+      method: 'DELETE',
+    })
+    if (response.status === 200) {
+      console.log('deleted in database')
+    } else {
+      console.log('sry Kollege, mach das ordentlich')
+    }
   }
 
   return (

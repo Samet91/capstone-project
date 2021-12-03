@@ -19,6 +19,12 @@ app.post('/costs', async (req, res) => {
   res.status(200).send('Newcost was added')
 })
 
+app.delete('/delete/:_id', async (req, res) => {
+  const costId = req.params._id
+  await getCollection().deleteOne({ _id: Number(costId) })
+  res.status(200).send('deleted one transaction')
+})
+
 app.get('/api/hello', (_request, response) => {
   response.json({ message: 'Hello API!' })
 })

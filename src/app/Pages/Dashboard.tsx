@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TransactionForm from '../components/TransactionForm/TransactionForm'
 import Expense from '../components/Expense/Expense'
 
-import useLocalStorage from '../hooks/useLocalStorage'
 import type { TransactionProps } from '../../types'
 import Button from '../components/Button/Button'
 import styled from 'styled-components'
@@ -10,14 +9,23 @@ import { Link } from 'react-router-dom'
 import ArrowIconRight from '../components/Icons/ArrowIconRight'
 
 export default function Dashboard(): JSX.Element {
-  const [transactions, setTransactions] = useLocalStorage<TransactionProps[]>(
-    'transactions',
-    []
-  )
+  const [transactions, setTransactions] = useState<TransactionProps[]>([])
 
-  function handleNewTransaction(transaction: TransactionProps) {
+  async function handleNewTransaction(transaction: TransactionProps) {
     const newTransactions = [...transactions, transaction]
     setTransactions(newTransactions)
+    const response = await fetch('/costs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(transaction),
+    })
+    if (response.status === 200) {
+      console.log('added in database')
+    } else {
+      console.log('scheiße gelaufen')
+    }
   }
 
   const income = transactions

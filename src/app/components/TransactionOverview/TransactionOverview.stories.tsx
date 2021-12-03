@@ -9,10 +9,11 @@ export default {
 
 const example = [
   {
-    id: 0,
+    _id: 0,
     category: 'schuhe',
     amount: 30,
     type: 'expense',
+    date: '02.12.2021',
   },
 ]
 

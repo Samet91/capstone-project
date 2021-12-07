@@ -1,35 +1,35 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import type { TransactionProps } from '../../types'
+import type { Transaction } from '../../types'
 import Button from '../components/Button/Button'
 import ArrowIconRight from '../components/Icons/ArrowIconRight'
 import TransactionOverview from '../components/TransactionOverview/TransactionOverview'
+import useFetch from '../hooks/useFetch'
 
 export default function TransactionHistory(): JSX.Element {
-  const [transactions, setTransactions] = useState<TransactionProps[]>([])
+  const [transactions, refetch] = useFetch<Transaction[]>('/api/costs')
 
   async function handleDeleteTransaction(id: number) {
-    const newTransactions = transactions.filter(
-      (transaction) => transaction._id !== id
-    )
-    setTransactions(newTransactions)
-    const response = await fetch(`/delete/${id}`, {
+    const response = await fetch(`/api/delete/${id}`, {
       method: 'DELETE',
     })
-    if (response.status === 200) {
+    if (response.ok) {
       console.log('deleted in database')
     } else {
       console.log('sry Kollege, mach das ordentlich')
     }
+    refetch()
   }
 
   return (
     <Container>
-      <TransactionOverview
-        transactions={transactions}
-        deleteTransaction={handleDeleteTransaction}
-      />
+      {transactions && (
+        <TransactionOverview
+          transactions={transactions}
+          deleteTransaction={handleDeleteTransaction}
+        />
+      )}
       <Link to="/">
         <BackButton>
           <Icon>

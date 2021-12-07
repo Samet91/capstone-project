@@ -30,7 +30,7 @@ export default function Login(): JSX.Element {
   )
 }
 
-const Container = styled.div`
+export const Container = styled.div`
   display: grid;
   justify-items: center;
   align-content: start;
@@ -39,13 +39,13 @@ const Container = styled.div`
   height: 100vh;
 `
 
-const Header = styled.header`
+export const Header = styled.header`
   display: flex;
   justify-content: center;
   font-family: initial;
   font-size: xx-large;
 `
 
-const LinkContainer = styled.div`
+export const LinkContainer = styled.div`
   align-self: center;
 `

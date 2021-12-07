@@ -9,6 +9,15 @@ export default {
 function handleLoginSubmit(username: string, password: string): void {
   console.log(`Logged in ${username}, ${password}`)
 }
-export const UserLogin = (): JSX.Element => (
+
+function handleRegisterSubmit(username: string, password: string): void {
+  console.log(`Logged in ${username}, ${password}`)
+}
+
+export const Login = (): JSX.Element => (
   <UserForm type="Login" onSubmit={handleLoginSubmit} />
+)
+
+export const Register = (): JSX.Element => (
+  <UserForm type="Register" onSubmit={handleRegisterSubmit} />
 )

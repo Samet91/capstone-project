@@ -19,5 +19,5 @@ export const Login = (): JSX.Element => (
 )
 
 export const Register = (): JSX.Element => (
-  <UserForm type="Register" onSubmit={handleRegisterSubmit} />
+  <UserForm type="Registrieren" onSubmit={handleRegisterSubmit} />
 )

@@ -17,7 +17,7 @@ export default function TransactionHistory(): JSX.Element {
     if (response.ok) {
       console.log('deleted in database')
     } else {
-      console.log('sry Kollege, mach das ordentlich')
+      console.log('delete has not worked')
     }
     refetch()
   }

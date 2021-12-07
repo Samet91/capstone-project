@@ -3,7 +3,7 @@ import Button from '../Button/Button'
 import styled from 'styled-components'
 
 type UserFormProps = {
-  type: 'Login' | 'Register'
+  type: 'Login' | 'Registrieren'
   onSubmit: (username: string, password: string) => void
 }
 

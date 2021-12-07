@@ -38,7 +38,7 @@ export default function Dashboard(): JSX.Element {
     if (response.status === 200) {
       console.log('added in database')
     } else {
-      console.log('scheiße gelaufen')
+      console.log('add to database did not work')
     }
     refetch()
   }

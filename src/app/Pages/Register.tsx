@@ -24,7 +24,7 @@ export default function Register(): JSX.Element {
   return (
     <Container>
       <Header>Registrieren</Header>
-      <UserForm type="Register" onSubmit={handleSubmit} />
+      <UserForm type="Registrieren" onSubmit={handleSubmit} />
       <LinkContainer>
         <Link to="/login">Login</Link>
       </LinkContainer>

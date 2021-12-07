@@ -1,20 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TransactionForm from '../components/TransactionForm/TransactionForm'
 import Expense from '../components/Expense/Expense'
 
-import type { TransactionProps } from '../../types'
+import type { Transaction } from '../../types'
 import Button from '../components/Button/Button'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import ArrowIconRight from '../components/Icons/ArrowIconRight'
+import useFetch from '../hooks/useFetch'
 
 export default function Dashboard(): JSX.Element {
-  const [transactions, setTransactions] = useState<TransactionProps[]>([])
+  const [transactions, refetch] = useFetch<Transaction[]>('/api/costs')
+  const [income, setIncome] = useState(0)
+  const [expense, setExpense] = useState(0)
 
-  async function handleNewTransaction(transaction: TransactionProps) {
-    const newTransactions = [...transactions, transaction]
-    setTransactions(newTransactions)
-    const response = await fetch('/costs', {
+  useEffect(() => {
+    if (transactions) {
+      const newIncome = transactions
+        .filter(({ type }) => type === 'income')
+        .reduce((sum, transaction) => sum + transaction.amount, 0)
+      setIncome(newIncome)
+      const newExpense = transactions
+        .filter(({ type }) => type === 'expense')
+        .reduce((sum, transaction) => sum + transaction.amount, 0)
+      setExpense(newExpense)
+    }
+  }, [transactions])
+
+  async function handleNewTransaction(transaction: Transaction) {
+    const response = await fetch('/api/costs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,19 +40,12 @@ export default function Dashboard(): JSX.Element {
     } else {
       console.log('scheiße gelaufen')
     }
+    refetch()
   }
-
-  const income = transactions
-    .filter(({ type }) => type === 'income')
-    .reduce((sum, transaction) => sum + transaction.amount, 0)
-
-  const expense = transactions
-    .filter(({ type }) => type === 'expense')
-    .reduce((sum, transaction) => sum + transaction.amount, 0)
 
   return (
     <>
-      <H2>Wie viel bleibt denn übrig?</H2>
+      <H2>Kostenrechner</H2>
       <Expense income={income} expense={expense} />
 
       <TransactionForm onNewTransaction={handleNewTransaction} />

@@ -1,4 +1,4 @@
-export type TransactionProps = {
+export type Transaction = {
   _id: number
   category: string
   amount: number

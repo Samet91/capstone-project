@@ -30,6 +30,23 @@ app.get('/api/costs', async (_req, res) => {
   res.send(existingCosts)
 })
 
+app.post('/api/register', async (req, res) => {
+  const newUser = req.body
+  const existingUser = await getCollection().findOne({
+    username: newUser.username,
+  })
+  if (existingUser) {
+    res
+      .status(409)
+      .send(
+        `${newUser.username} Account already exists! please choose another name`
+      )
+  } else {
+    await getCollection().insertOne(newUser)
+    res.status(201).send('Your Account was created')
+  }
+})
+
 app.get('/api/hello', (_request, response) => {
   response.json({ message: 'Hello API!' })
 })

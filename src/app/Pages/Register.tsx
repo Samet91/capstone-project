@@ -7,7 +7,7 @@ export default function Register(): JSX.Element {
   const navigate = useNavigate()
 
   async function handleSubmit(username: string, password: string) {
-    const response = await fetch('/register', {
+    const response = await fetch('/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,6 +1,6 @@
 import type { Collection } from 'mongodb'
 import { MongoClient } from 'mongodb'
-import type { TransactionProps } from '../../types'
+import type { Transaction } from '../../types'
 
 let client: MongoClient
 
@@ -9,6 +9,6 @@ export async function connectDatabase(url: string): Promise<void> {
   await client.connect()
 }
 
-export function getCollection(): Collection<TransactionProps> {
+export function getCollection(): Collection<Transaction> {
   return client.db().collection('expenseTracker')
 }

@@ -3,7 +3,7 @@ import Button from '../Button/Button'
 import styled from 'styled-components'
 
 type UserFormProps = {
-  type: 'Login' | 'Register'
+  type: 'Login' | 'Registrieren'
   onSubmit: (username: string, password: string) => void
 }
 
@@ -21,33 +21,31 @@ export default function UserForm({
   }
 
   return (
-    <div>
-      <Form onSubmit={(event) => handleSubmit(event)}>
-        <InputContainer>
-          <Label>
-            Benutzername:
-            <Input
-              type="text"
-              required
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            />
-          </Label>
-          <Label>
-            Passwort:
-            <Input
-              type="password"
-              required
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </Label>
-        </InputContainer>
-        <StyledButton>
-          <Button>{type}</Button>
-        </StyledButton>
-      </Form>
-    </div>
+    <Form onSubmit={(event) => handleSubmit(event)}>
+      <InputContainer>
+        <Label>
+          Benutzername:
+          <Input
+            type="text"
+            required
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+        </Label>
+        <Label>
+          Passwort:
+          <Input
+            type="password"
+            required
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </Label>
+      </InputContainer>
+      <StyledButton>
+        <Button>{type}</Button>
+      </StyledButton>
+    </Form>
   )
 }
 
@@ -55,6 +53,7 @@ const Form = styled.form`
   display: grid;
   border: solid 5px green;
   border-radius: 10px;
+  width: 80%;
 `
 const InputContainer = styled.div`
   margin: 5px;

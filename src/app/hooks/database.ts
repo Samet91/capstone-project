@@ -4,11 +4,17 @@ import type { Transaction } from '../../types'
 
 let client: MongoClient
 
+interface User {
+  username: string
+  password: string
+  transaction?: Transaction[]
+}
+
 export async function connectDatabase(url: string): Promise<void> {
   client = new MongoClient(url)
   await client.connect()
 }
 
-export function getCollection(): Collection<Transaction> {
+export function getCollection(): Collection<User> {
   return client.db().collection('expenseTracker')
 }

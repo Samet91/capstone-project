@@ -68,7 +68,7 @@ const Input = styled.input`
   border-radius: 5px;
   padding: 5px;
 `
-const StyledButton = styled.button`
+const StyledButton = styled.span`
   background-color: #8ee9da;
   border: none;
   display: inline-block;

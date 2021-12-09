@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { idGenerator } from '../Utils'
 import styled from 'styled-components'
-import type { TransactionProps } from '../../../types'
+import type { Transaction } from '../../../types'
 
 type TransactionFormProps = {
-  onNewTransaction: (data: TransactionProps) => void
+  onNewTransaction: (data: Transaction) => void
 }
 
 export default function TransactionForm({

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import type { Transaction } from '../../types'
 import Button from '../components/Button/Button'
@@ -8,18 +8,19 @@ import TransactionOverview from '../components/TransactionOverview/TransactionOv
 import useFetch from '../hooks/useFetch'
 
 export default function TransactionHistory(): JSX.Element {
-  const [transactions, refetch] = useFetch<Transaction[]>('/api/costs')
+  const { username } = useParams()
+  const transactions = useFetch<Transaction[]>(`${username}/api/costs`)
 
   async function handleDeleteTransaction(id: number) {
-    const response = await fetch(`/api/delete/${id}`, {
+    const response = await fetch(`/${username}/api/delete/${id}`, {
       method: 'DELETE',
     })
+    console.log(response)
     if (response.ok) {
       console.log('deleted in database')
     } else {
       console.log('delete has not worked')
     }
-    refetch()
   }
 
   return (
@@ -30,7 +31,7 @@ export default function TransactionHistory(): JSX.Element {
           deleteTransaction={handleDeleteTransaction}
         />
       )}
-      <Link to="/">
+      <Link to={`/${username}`}>
         <BackButton>
           <Icon>
             <ArrowIconRight />

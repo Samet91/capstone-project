@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import TrashIcon from '../Icons/TrashIcon'
 
-import type { TransactionProps } from '../../../types'
+import type { Transaction } from '../../../types'
 
 export type InitialStateType = {
-  transactions: TransactionProps[]
+  transactions: Transaction[]
   deleteTransaction: (id: number) => void
 }
 
@@ -29,7 +29,7 @@ export default function TransactionOverview({
               }
               return 0
             })
-            .map((transaction: TransactionProps) => (
+            .map((transaction: Transaction) => (
               <Li key={transaction._id} type={transaction.type}>
                 <Date>{transaction.date}</Date>
                 <span>{transaction.category}</span>
@@ -79,7 +79,7 @@ const H2 = styled.h2`
   justify-content: center;
 `
 
-const Li = styled.li<Partial<TransactionProps>>`
+const Li = styled.li<Partial<Transaction>>`
   list-style: none;
   display: flex;
   justify-content: space-between;

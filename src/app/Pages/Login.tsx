@@ -1,11 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import UserForm from '../components/UserForm/UserForm'
 
 export default function Login(): JSX.Element {
+  const navigate = useNavigate()
   async function handleSubmit(username: string, password: string) {
-    const response = await fetch('api/login', {
+    const response = await fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -13,7 +14,7 @@ export default function Login(): JSX.Element {
       body: JSON.stringify({ username, password }),
     })
     if (response.status === 200) {
-      alert('Du bist eingeloggt')
+      navigate(`/${username}`)
     } else {
       alert('Anmeldung fehlgeschlagen')
     }

@@ -5,12 +5,13 @@ import Expense from '../components/Expense/Expense'
 import type { Transaction } from '../../types'
 import Button from '../components/Button/Button'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import ArrowIconRight from '../components/Icons/ArrowIconRight'
 import useFetch from '../hooks/useFetch'
 
 export default function Dashboard(): JSX.Element {
-  const [transactions, refetch] = useFetch<Transaction[]>('/api/costs')
+  const username = useParams()
+  const transactions = useFetch<Transaction[]>(`/${username}/api/costs`)
   const [income, setIncome] = useState(0)
   const [expense, setExpense] = useState(0)
 
@@ -28,8 +29,8 @@ export default function Dashboard(): JSX.Element {
   }, [transactions])
 
   async function handleNewTransaction(transaction: Transaction) {
-    const response = await fetch('/api/costs', {
-      method: 'POST',
+    const response = await fetch(`/api/costs/${username}`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -40,12 +41,10 @@ export default function Dashboard(): JSX.Element {
     } else {
       console.log('add to database did not work')
     }
-    refetch()
   }
 
   return (
     <>
-      <H2>Kostenrechner</H2>
       <Expense income={income} expense={expense} />
 
       <TransactionForm onNewTransaction={handleNewTransaction} />
@@ -60,12 +59,6 @@ export default function Dashboard(): JSX.Element {
     </>
   )
 }
-
-const H2 = styled.h2`
-  display: flex;
-  justify-content: center;
-  color: steelblue;
-`
 
 const StyledButton = styled(Button)`
   font-weight: bold;

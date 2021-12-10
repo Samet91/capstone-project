@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import express from 'express'
+import cookieParser from 'cookie-parser'
 import { connectDatabase, getCollection } from './app/hooks/database'
 
 if (!process.env.MONGODB_URI) {
@@ -13,25 +14,28 @@ const port = process.env.PORT || 3001
 
 app.use(express.json())
 
-app.get('/', async (req, res) => {
-  const username = req.cookies.username
-  const findUser = await getCollection().findOne({ username })
-  if (findUser) {
-    res.redirect(`/${username}`)
-  } else {
-    res.redirect('/login')
-  }
-})
+app.use(cookieParser())
+
+// app.get('/', async (req, res) => {
+//   const username = req.cookies.username
+//   const findUser = await getCollection().findOne({ username })
+//   if (findUser) {
+//     res.redirect(`/${username}`)
+//   } else {
+//     res.redirect('/login')
+//   }
+// })
 
 app.patch('/api/costs/:username', async (req, res) => {
   const username = req.params.username
   const newCosts = req.body
+
   if (username === req.cookies.username) {
-    await getCollection().updateOne(
+    const insertedCost = await getCollection().updateOne(
       { username },
       {
         $push: {
-          transaction: {
+          transactions: {
             _id: newCosts._id,
             category: newCosts.category,
             amount: newCosts.amount,
@@ -41,26 +45,42 @@ app.patch('/api/costs/:username', async (req, res) => {
         },
       }
     )
-    res.status(200).send('Newcost were added')
-  } else {
-    res.status(403).send('Add failed')
+    if (insertedCost.modifiedCount > 0) {
+      res.status(200).send('Newcost were added')
+    } else {
+      res.status(403).send('Add failed')
+    }
   }
 })
 
-app.delete('/:username/api/delete/:_id', async (req, res) => {
+app.patch('/api/delete/:_id/:username', async (req, res) => {
   const username = req.params.username
   const costId = req.params._id
-  await getCollection().updateOne(
+  const deletedCost = await getCollection().updateOne(
     { username },
     { $pull: { transactions: { _id: costId } } }
   )
-  res.status(200).send('transaction was deleted')
+  if (deletedCost.modifiedCount > 0) {
+    res.status(200).send('transaction was deleted')
+  } else {
+    res.status(400).send('nonono')
+  }
 })
 
-app.get('/:username/api/costs', async (req, res) => {
+app.get('/api/costs/:username', async (req, res) => {
   const username = req.params.username
+
   const existingCosts = await getCollection().findOne({ username })
-  res.send(existingCosts)
+
+  if (existingCosts) {
+    res.status(200).send(existingCosts.transactions)
+  } else {
+    res.status(200).send(null)
+  }
+  /*   
+    get the users transactions 
+    if there arent any your frontend needs to work with that
+  */
 })
 
 app.post('/api/register', async (req, res) => {

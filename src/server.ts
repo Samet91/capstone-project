@@ -16,16 +16,6 @@ app.use(express.json())
 
 app.use(cookieParser())
 
-// app.get('/', async (req, res) => {
-//   const username = req.cookies.username
-//   const findUser = await getCollection().findOne({ username })
-//   if (findUser) {
-//     res.redirect(`/${username}`)
-//   } else {
-//     res.redirect('/login')
-//   }
-// })
-
 app.patch('/api/costs/:username', async (req, res) => {
   const username = req.params.username
   const newCosts = req.body
@@ -63,7 +53,7 @@ app.patch('/api/delete/:_id/:username', async (req, res) => {
   if (deletedCost.modifiedCount > 0) {
     res.status(200).send('transaction was deleted')
   } else {
-    res.status(400).send('nonono')
+    res.status(400).send(' transaction can not be deleted')
   }
 })
 
@@ -77,10 +67,6 @@ app.get('/api/costs/:username', async (req, res) => {
   } else {
     res.status(200).send(null)
   }
-  /*   
-    get the users transactions 
-    if there arent any your frontend needs to work with that
-  */
 })
 
 app.post('/api/register', async (req, res) => {

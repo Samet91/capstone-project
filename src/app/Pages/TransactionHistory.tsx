@@ -18,8 +18,8 @@ export default function TransactionHistory(): JSX.Element {
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(transactions),
     })
-    console.log(response)
     if (response.ok) {
       console.log('deleted in database')
     } else {

@@ -15,7 +15,7 @@ export default function Register(): JSX.Element {
       body: JSON.stringify({ username, password }),
     })
     if (response.status === 201) {
-      navigate('/login')
+      navigate('/')
     } else {
       alert('Benutzer vorhanden! Bitte einen neuen Benutzernamen auswählen')
     }
@@ -26,7 +26,7 @@ export default function Register(): JSX.Element {
       <Header>Registrieren</Header>
       <UserForm type="Registrieren" onSubmit={handleSubmit} />
       <LinkContainer>
-        <Link to="/login">Login</Link>
+        <Link to="/">Login</Link>
       </LinkContainer>
     </Container>
   )

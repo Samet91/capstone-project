@@ -14,7 +14,6 @@ function App(): JSX.Element {
         <Route path="/" element={<Login />} />
         <Route path="/:username" element={<Dashboard />} />
         <Route path="/:username/transaction" element={<TransactionHistory />} />
-
         <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>

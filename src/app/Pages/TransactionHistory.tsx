@@ -9,11 +9,15 @@ import useFetch from '../hooks/useFetch'
 
 export default function TransactionHistory(): JSX.Element {
   const { username } = useParams()
-  const transactions = useFetch<Transaction[]>(`${username}/api/costs`)
+
+  const transactions = useFetch<Transaction[]>(`/api/costs/${username}`)
 
   async function handleDeleteTransaction(id: number) {
-    const response = await fetch(`/${username}/api/delete/${id}`, {
-      method: 'DELETE',
+    const response = await fetch(`/api/delete/${id}/${username}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
     console.log(response)
     if (response.ok) {

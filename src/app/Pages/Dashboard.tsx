@@ -10,13 +10,14 @@ import ArrowIconRight from '../components/Icons/ArrowIconRight'
 import useFetch from '../hooks/useFetch'
 
 export default function Dashboard(): JSX.Element {
-  const username = useParams()
-  const transactions = useFetch<Transaction[]>(`/${username}/api/costs`)
+  const { username } = useParams()
+  const transactions = useFetch<Transaction[]>(`/api/costs/${username}`)
   const [income, setIncome] = useState(0)
   const [expense, setExpense] = useState(0)
 
   useEffect(() => {
-    if (transactions) {
+    // if there are no transactions then dont try to work with them
+    if (transactions && transactions.length > 0) {
       const newIncome = transactions
         .filter(({ type }) => type === 'income')
         .reduce((sum, transaction) => sum + transaction.amount, 0)
@@ -36,6 +37,7 @@ export default function Dashboard(): JSX.Element {
       },
       body: JSON.stringify(transaction),
     })
+
     if (response.status === 200) {
       console.log('added in database')
     } else {

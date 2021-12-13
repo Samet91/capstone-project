@@ -70,7 +70,6 @@ const H2 = styled.h2`
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.6;
   letter-spacing: 0.15em;
-  margin-top: 20px;
   color: #131111;
   background-color: steelblue;
   padding: 5px;
@@ -87,7 +86,6 @@ const Li = styled.li<Partial<Transaction>>`
   background-color: #12151b;
   padding: 1.5em;
   border-radius: 5px;
-  overflow-y: auto;
   color: ${(props) => (props.type === 'income' ? 'green' : 'red')};
 `
 

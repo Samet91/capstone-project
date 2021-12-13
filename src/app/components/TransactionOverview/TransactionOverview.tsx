@@ -30,7 +30,7 @@ export default function TransactionOverview({
               return 0
             })
             .map((transaction: Transaction) => (
-              <Li key={transaction._id} type={transaction.type}>
+              <Li key={transaction.id} type={transaction.type}>
                 <Date>{transaction.date}</Date>
                 <span>{transaction.category}</span>
 
@@ -38,7 +38,7 @@ export default function TransactionOverview({
                   €{transaction.amount ? Math.abs(transaction.amount) : null}
                   <Icon>
                     <TrashIcon
-                      onClick={() => deleteTransaction(transaction._id)}
+                      onClick={() => deleteTransaction(transaction.id)}
                     />
                   </Icon>
                 </Amount>

@@ -26,7 +26,7 @@ app.patch('/api/costs/:username', async (req, res) => {
       {
         $push: {
           transactions: {
-            _id: newCosts._id,
+            id: newCosts.id,
             category: newCosts.category,
             amount: newCosts.amount,
             type: newCosts.type,
@@ -43,13 +43,16 @@ app.patch('/api/costs/:username', async (req, res) => {
   }
 })
 
-app.patch('/api/delete/:_id/:username', async (req, res) => {
+app.patch('/api/delete/:username/:id', async (req, res) => {
   const username = req.params.username
-  const costId = req.params._id
+  const costId = req.params.id
+
   const deletedCost = await getCollection().updateOne(
     { username },
-    { $pull: { transactions: { _id: costId } } }
+    { $pull: { transactions: { id: Number(costId) } } }
   )
+  console.log(deletedCost)
+
   if (deletedCost.modifiedCount > 0) {
     res.status(200).send('transaction was deleted')
   } else {
@@ -93,11 +96,16 @@ app.post('/api/login', async (req, res) => {
     { projection: { _id: 0, username: 1, password: 1 } }
   )
   if (existingUser && existingUser.password === user.password) {
-    res.setHeader('Set-Cookie', `username=${existingUser.username}`)
+    res.setHeader('Set-Cookie', `username=${existingUser.username};path="/"`)
     res.status(200).send('Login successful')
   } else {
     res.status(403).send('Password incorrect')
   }
+})
+
+app.post('/api/logout', async (_req, res) => {
+  res.clearCookie('username')
+  res.redirect('/')
 })
 
 app.get('/api/hello', (_request, response) => {

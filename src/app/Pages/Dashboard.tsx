@@ -11,7 +11,9 @@ import useFetch from '../hooks/useFetch'
 
 export default function Dashboard(): JSX.Element {
   const { username } = useParams()
-  const transactions = useFetch<Transaction[]>(`/api/costs/${username}`)
+  const [transactions, refetchTransactions] = useFetch<Transaction[]>(
+    `/api/costs/${username}`
+  )
   const [income, setIncome] = useState(0)
   const [expense, setExpense] = useState(0)
 
@@ -40,6 +42,7 @@ export default function Dashboard(): JSX.Element {
 
     if (response.status === 200) {
       console.log('added in database')
+      refetchTransactions()
     } else {
       console.log('add to database did not work')
     }

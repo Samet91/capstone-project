@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function useFetch<T>(url: string): null | T {
+export default function useFetch<T>(url: string): [null | T, () => void] {
   const [data, setData] = useState<null | T>(null)
 
   async function fetchData() {
@@ -13,5 +13,5 @@ export default function useFetch<T>(url: string): null | T {
     fetchData()
   }, [])
 
-  return data
+  return [data, fetchData]
 }

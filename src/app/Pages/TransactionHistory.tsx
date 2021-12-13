@@ -10,21 +10,32 @@ import useFetch from '../hooks/useFetch'
 export default function TransactionHistory(): JSX.Element {
   const { username } = useParams()
 
-  const transactions = useFetch<Transaction[]>(`/api/costs/${username}`)
+  const [transactions, refetchTransactions] = useFetch<Transaction[]>(
+    `/api/costs/${username}`
+  )
 
   async function handleDeleteTransaction(id: number) {
-    const response = await fetch(`/api/delete/${id}/${username}`, {
+    const response = await fetch(`/api/delete/${username}/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(transactions),
     })
     if (response.ok) {
       console.log('deleted in database')
+      refetchTransactions()
     } else {
       console.log('delete has not worked')
     }
+  }
+
+  async function handleClick() {
+    await fetch('/api/logout/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
   }
 
   return (
@@ -42,6 +53,7 @@ export default function TransactionHistory(): JSX.Element {
           </Icon>
         </BackButton>
       </Link>
+      <Button onClick={() => handleClick()}>Logout</Button>
     </Container>
   )
 }

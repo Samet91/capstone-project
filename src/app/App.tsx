@@ -4,12 +4,10 @@ import Dashboard from './Pages/Dashboard'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
 import TransactionHistory from './Pages/TransactionHistory'
-import logo from '../images/logo.png'
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
-      <img src={logo} width="100%" />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/:username" element={<Dashboard />} />

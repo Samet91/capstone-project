@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import express from 'express'
+import cookieParser from 'cookie-parser'
 import { connectDatabase, getCollection } from './app/hooks/database'
 
 if (!process.env.MONGODB_URI) {
@@ -13,26 +14,19 @@ const port = process.env.PORT || 3001
 
 app.use(express.json())
 
-app.get('/', async (req, res) => {
-  const username = req.cookies.username
-  const findUser = await getCollection().findOne({ username })
-  if (findUser) {
-    res.redirect(`/${username}`)
-  } else {
-    res.redirect('/login')
-  }
-})
+app.use(cookieParser())
 
 app.patch('/api/costs/:username', async (req, res) => {
   const username = req.params.username
   const newCosts = req.body
+
   if (username === req.cookies.username) {
-    await getCollection().updateOne(
+    const insertedCost = await getCollection().updateOne(
       { username },
       {
         $push: {
-          transaction: {
-            _id: newCosts._id,
+          transactions: {
+            id: newCosts.id,
             category: newCosts.category,
             amount: newCosts.amount,
             type: newCosts.type,
@@ -41,26 +35,41 @@ app.patch('/api/costs/:username', async (req, res) => {
         },
       }
     )
-    res.status(200).send('Newcost were added')
-  } else {
-    res.status(403).send('Add failed')
+    if (insertedCost.modifiedCount > 0) {
+      res.status(200).send('Newcost were added')
+    } else {
+      res.status(403).send('Add failed')
+    }
   }
 })
 
-app.delete('/:username/api/delete/:_id', async (req, res) => {
+app.patch('/api/delete/:username/:id', async (req, res) => {
   const username = req.params.username
-  const costId = req.params._id
-  await getCollection().updateOne(
+  const costId = req.params.id
+
+  const deletedCost = await getCollection().updateOne(
     { username },
-    { $pull: { transactions: { _id: costId } } }
+    { $pull: { transactions: { id: Number(costId) } } }
   )
-  res.status(200).send('transaction was deleted')
+  console.log(deletedCost)
+
+  if (deletedCost.modifiedCount > 0) {
+    res.status(200).send('transaction was deleted')
+  } else {
+    res.status(400).send(' transaction can not be deleted')
+  }
 })
 
-app.get('/:username/api/costs', async (req, res) => {
+app.get('/api/costs/:username', async (req, res) => {
   const username = req.params.username
+
   const existingCosts = await getCollection().findOne({ username })
-  res.send(existingCosts)
+
+  if (existingCosts) {
+    res.status(200).send(existingCosts.transactions)
+  } else {
+    res.status(200).send(null)
+  }
 })
 
 app.post('/api/register', async (req, res) => {
@@ -87,11 +96,16 @@ app.post('/api/login', async (req, res) => {
     { projection: { _id: 0, username: 1, password: 1 } }
   )
   if (existingUser && existingUser.password === user.password) {
-    res.setHeader('Set-Cookie', `username=${existingUser.username}`)
+    res.setHeader('Set-Cookie', `username=${existingUser.username};path="/"`)
     res.status(200).send('Login successful')
   } else {
     res.status(403).send('Password incorrect')
   }
+})
+
+app.post('/api/logout', async (_req, res) => {
+  res.clearCookie('username')
+  res.redirect('/')
 })
 
 app.get('/api/hello', (_request, response) => {

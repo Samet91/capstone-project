@@ -7,7 +7,7 @@ let client: MongoClient
 interface User {
   username: string
   password: string
-  transaction?: Transaction[]
+  transactions?: Transaction[]
 }
 
 export async function connectDatabase(url: string): Promise<void> {

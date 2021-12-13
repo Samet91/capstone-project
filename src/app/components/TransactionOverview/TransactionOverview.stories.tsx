@@ -9,7 +9,7 @@ export default {
 
 const example = [
   {
-    _id: 0,
+    id: 0,
     category: 'schuhe',
     amount: 30,
     type: 'expense',

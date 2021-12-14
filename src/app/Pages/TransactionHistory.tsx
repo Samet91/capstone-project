@@ -1,14 +1,14 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import type { Transaction } from '../../types'
-import Button from '../components/Button/Button'
-import ArrowIconRight from '../components/Icons/ArrowIconRight'
 import TransactionOverview from '../components/TransactionOverview/TransactionOverview'
 import useFetch from '../hooks/useFetch'
+import { HiChevronDoubleLeft, HiLogout } from 'react-icons/hi'
 
 export default function TransactionHistory(): JSX.Element {
   const { username } = useParams()
+  const navigate = useNavigate()
 
   const [transactions, refetchTransactions] = useFetch<Transaction[]>(
     `/api/costs/${username}`
@@ -36,24 +36,25 @@ export default function TransactionHistory(): JSX.Element {
         'Content-Type': 'application/json',
       },
     })
+    navigate('/')
   }
 
   return (
     <Container>
-      {transactions && (
-        <TransactionOverview
-          transactions={transactions}
-          deleteTransaction={handleDeleteTransaction}
-        />
-      )}
-      <Link to={`/${username}`}>
-        <BackButton>
-          <Icon>
-            <ArrowIconRight />
-          </Icon>
-        </BackButton>
-      </Link>
-      <Button onClick={() => handleClick()}>Logout</Button>
+      <Main>
+        {transactions && (
+          <TransactionOverview
+            transactions={transactions}
+            deleteTransaction={handleDeleteTransaction}
+          />
+        )}
+      </Main>
+      <Nav>
+        <Link to={`/${username}`}>
+          <BackIcon />
+        </Link>
+        <LogoutIcon onClick={() => handleClick()} />
+      </Nav>
     </Container>
   )
 }
@@ -61,16 +62,26 @@ export default function TransactionHistory(): JSX.Element {
 const Container = styled.div`
   display: grid;
   grid-template-rows: auto 60px;
+  height: 100vh;
 `
-
-const BackButton = styled(Button)`
-  font-weight: bold;
-  font-size: 1rem;
+const Main = styled.main`
+  overflow-y: auto;
+  overflow-x: hidden;
+`
+const Nav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
   background-color: steelblue;
-  border: none;
-  display: grid;
+  margin: 0 -10px;
 `
-
-const Icon = styled.span`
-  transform: rotateY(180deg);
+const BackIcon = styled(HiChevronDoubleLeft)`
+  color: black;
+  height: 1.5rem;
+  width: 1.5rem;
+`
+const LogoutIcon = styled(HiLogout)`
+  color: black;
+  height: 1.5rem;
+  width: 1.5rem;
 `

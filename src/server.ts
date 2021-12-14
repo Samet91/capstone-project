@@ -12,6 +12,12 @@ if (!process.env.MONGODB_URI) {
 const app = express()
 const port = process.env.PORT || 3001
 
+const { JWT_SECRET } = process.env
+
+if (!JWT_SECRET) {
+  throw new Error('No JWT_SECRET provided')
+}
+
 app.use(express.json())
 
 app.use(cookieParser())

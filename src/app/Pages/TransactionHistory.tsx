@@ -66,6 +66,7 @@ const Container = styled.div`
 `
 const Main = styled.main`
   overflow-y: auto;
+  overflow-x: hidden;
 `
 const Nav = styled.nav`
   display: flex;
@@ -80,7 +81,7 @@ const BackIcon = styled(HiChevronDoubleLeft)`
   width: 1.5rem;
 `
 const LogoutIcon = styled(HiLogout)`
-  color: var(--color-font-dark);
+  color: black;
   height: 1.5rem;
   width: 1.5rem;
 `

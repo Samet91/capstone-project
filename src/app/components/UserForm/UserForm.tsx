@@ -41,19 +41,20 @@ export default function UserForm({
             onChange={(event) => setPassword(event.target.value)}
           />
         </Label>
+        <StyledButton>
+          <Button>{type}</Button>
+        </StyledButton>
       </InputContainer>
-      <StyledButton>
-        <Button>{type}</Button>
-      </StyledButton>
     </Form>
   )
 }
 
 const Form = styled.form`
   display: grid;
-  border: solid 5px green;
+  border: solid 5px #e29578;
   border-radius: 10px;
   width: 80%;
+  background-color: #e29578;
 `
 const InputContainer = styled.div`
   margin: 5px;
@@ -62,6 +63,8 @@ const InputContainer = styled.div`
 const Label = styled.label`
   display: flex;
   flex-direction: column;
+  color: var(--font);
+  font-weight: 600;
 `
 
 const Input = styled.input`
@@ -69,8 +72,7 @@ const Input = styled.input`
   padding: 5px;
 `
 const StyledButton = styled.span`
-  background-color: #8ee9da;
-  border: none;
-  display: inline-block;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 `

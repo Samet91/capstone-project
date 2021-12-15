@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import UserForm from '../components/UserForm/UserForm'
+import headerLogo from '../../images/headerLogo.png'
 
 export default function Login(): JSX.Element {
   const navigate = useNavigate()
@@ -22,7 +23,8 @@ export default function Login(): JSX.Element {
 
   return (
     <Container>
-      <Header>Einloggen</Header>
+      <img src={headerLogo} width="100%" />
+      <StyledHeadline>Log dich ein und los gehts...</StyledHeadline>
       <UserForm type="Login" onSubmit={handleSubmit} />
       <LinkContainer>
         <Link to="/register">Registrieren</Link>
@@ -36,17 +38,20 @@ export const Container = styled.div`
   justify-items: center;
   align-content: start;
   gap: 20px;
-  padding: 20px;
-  height: 100vh;
-`
-
-export const Header = styled.header`
-  display: flex;
-  justify-content: center;
-  font-family: initial;
-  font-size: xx-large;
+  margin: 30px;
+  height: 90vh;
+  background-color: #83c5be;
+  border: 4px solid var(--font);
 `
 
 export const LinkContainer = styled.div`
   align-self: center;
+  color: var(--font);
+`
+
+const StyledHeadline = styled.p`
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+  padding: 0 20px;
 `

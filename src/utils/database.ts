@@ -1,6 +1,6 @@
 import type { Collection } from 'mongodb'
 import { MongoClient } from 'mongodb'
-import type { Transaction } from '../../types'
+import type { Transaction } from '../types'
 
 let client: MongoClient
 

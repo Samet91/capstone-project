@@ -32,9 +32,11 @@ const Balance = styled.h2<inOutProps>`
   margin-top: 10px;
   line-height: 1.167;
   font-size: 3rem;
-  color: ${(props) => (props.income - props.expense < 0 ? 'red' : 'green')};
+  color: ${(props) =>
+    props.income - props.expense < 0 ? 'red' : 'var(--font-neon-green);'};
   border: solid 3px
-    ${(props) => (props.income - props.expense < 0 ? 'red' : 'green')};
+    ${(props) =>
+      props.income - props.expense < 0 ? 'red' : 'var(--font-neon-green);'};
   border-radius: 10px;
 `
 
@@ -60,11 +62,11 @@ const ExpenseContainer = styled.div`
 `
 
 const IncomeTitle = styled.span`
-  color: #1cd61c;
+  color: var(--font-neon-green);
 `
 
 const IncomePlace = styled.h2`
-  color: #1cd61c;
+  color: var(--font-neon-green);
 `
 
 const ExpenseTitle = styled.span`

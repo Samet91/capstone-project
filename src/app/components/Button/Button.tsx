@@ -5,5 +5,6 @@ const Button = styled.button`
   border-radius: 8px;
   font-weight: bold;
   margin-bottom: 20px;
+  color: blue;
 `
 export default Button

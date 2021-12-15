@@ -3,7 +3,7 @@ dotenv.config()
 
 import express from 'express'
 import cookieParser from 'cookie-parser'
-import { connectDatabase, getCollection } from './app/hooks/database'
+import { connectDatabase, getCollection } from './utils/database'
 
 if (!process.env.MONGODB_URI) {
   throw new Error('No MongoDB URL dotenv variable')

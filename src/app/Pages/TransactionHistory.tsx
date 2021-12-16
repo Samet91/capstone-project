@@ -5,6 +5,7 @@ import type { Transaction } from '../../types'
 import TransactionOverview from '../components/TransactionOverview/TransactionOverview'
 import useFetch from '../hooks/useFetch'
 import { HiChevronDoubleLeft, HiLogout } from 'react-icons/hi'
+import logoKreis from '../../images/logoKreis.png'
 
 export default function TransactionHistory(): JSX.Element {
   const { username } = useParams()
@@ -53,6 +54,9 @@ export default function TransactionHistory(): JSX.Element {
         <Link to={`/${username}`}>
           <BackIcon />
         </Link>
+        <Logo>
+          <img src={logoKreis} height={35} />
+        </Logo>
         <LogoutIcon onClick={() => handleClick()} />
       </Nav>
     </Container>
@@ -85,3 +89,4 @@ const LogoutIcon = styled(HiLogout)`
   height: 1.5rem;
   width: 1.5rem;
 `
+const Logo = styled.span``

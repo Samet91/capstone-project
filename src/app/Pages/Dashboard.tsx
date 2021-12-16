@@ -18,7 +18,6 @@ export default function Dashboard(): JSX.Element {
   const [expense, setExpense] = useState(0)
 
   useEffect(() => {
-    // if there are no transactions then dont try to work with them
     if (transactions && transactions.length > 0) {
       const newIncome = transactions
         .filter(({ type }) => type === 'income')

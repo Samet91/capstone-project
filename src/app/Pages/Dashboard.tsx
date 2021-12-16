@@ -67,10 +67,11 @@ export default function Dashboard(): JSX.Element {
 const StyledButton = styled(Button)`
   font-weight: bold;
   font-size: 1rem;
-  background-color: steelblue;
+  background-color: #4485b9;
   border: none;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 50px;
 `
 
 const ButtonText = styled.span`

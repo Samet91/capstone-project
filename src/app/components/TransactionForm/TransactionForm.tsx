@@ -95,8 +95,8 @@ const H2 = styled.h2`
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.6;
   letter-spacing: 0.1em;
-  margin: 20px 0 0;
-  color: #2d2f9f;
+  margin: 40px 0 0;
+  color: var(--font-middle-blue-green);
 `
 
 const CatContainer = styled.div`
@@ -155,6 +155,6 @@ const ButtonExpense = styled.button`
 `
 
 const Warning = styled.span`
-  color: #af4040;
+  color: var(--font-dark-salmon);
   font-size: 0.7em;
 `

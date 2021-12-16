@@ -42,7 +42,7 @@ const Balance = styled.h2<inOutProps>`
 
 const IncExpContainer = styled.div`
   display: flex;
-  margin-top: -20px;
+  margin-top: 20px;
 `
 
 const IncomeContainer = styled.div`

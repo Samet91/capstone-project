@@ -122,7 +122,7 @@ const AmountContainer = styled.div`
 const Input = styled.input`
   padding: 10px;
   outline: none;
-  border-color: aliceblue;
+  border-color: var(--font);
   border-radius: 5px;
 `
 
@@ -133,7 +133,7 @@ const ButtonContainer = styled.div`
 const ButtonIncome = styled.button`
   width: 49%;
   color: #121a12;
-  background-color: #1de01d;
+  background-color: var(--font-neon-green);
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -144,8 +144,8 @@ const ButtonIncome = styled.button`
 const ButtonExpense = styled.button`
   width: 49%;
   margin-left: 2%;
-  color: #ebe3e3;
-  background-color: red;
+  color: var(--font);
+  background-color: var(--font-max-red);
   border: none;
   padding: 5px;
   border-radius: 5px;

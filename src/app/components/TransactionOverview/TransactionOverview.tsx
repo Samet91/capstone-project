@@ -58,26 +58,23 @@ export default function TransactionOverview({
 
 const Section = styled.section`
   display: grid;
-  grid-template-rows: 55px auto;
+  grid-template-rows: 60px auto;
   height: 100vh;
-`
-
-const TransList = styled.ul`
-  padding: 0;
-  overflow-y: auto;
 `
 
 const Header = styled.div`
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.8;
   letter-spacing: 0.15em;
-  background-color: steelblue;
-  display: flex;
-  justify-content: center;
+  background-color: var(--font-steelblue);
   padding: 10px;
-  margin: 0 -30px;
   position: sticky;
   top: 0;
+`
+
+const TransList = styled.ul`
+  padding: 0;
+  overflow-y: auto;
 `
 
 const Li = styled.li<Partial<Transaction>>`

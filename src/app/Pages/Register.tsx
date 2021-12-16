@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import UserForm from '../components/UserForm/UserForm'
-import { Container, LinkContainer } from './Login'
-import logo from '../../images/logo.png'
+import { Container, LinkContainer, StyledHeadline } from './Login'
+import headerLogo from '../../images/headerLogo.png'
 
 export default function Register(): JSX.Element {
   const navigate = useNavigate()
@@ -24,7 +24,8 @@ export default function Register(): JSX.Element {
 
   return (
     <Container>
-      <img src={logo} width="100%" />
+      <img src={headerLogo} width="100%" />
+      <StyledHeadline>Jetzt registrieren und starten!</StyledHeadline>
       <UserForm type="Registrieren" onSubmit={handleSubmit} />
       <LinkContainer>
         <Link to="/">Login</Link>

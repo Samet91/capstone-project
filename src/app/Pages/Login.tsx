@@ -24,7 +24,7 @@ export default function Login(): JSX.Element {
   return (
     <Container>
       <img src={headerLogo} width="100%" />
-      <StyledHeadline>Log dich ein und los gehts...</StyledHeadline>
+      <StyledHeadline>Log dich ein und los geht's...</StyledHeadline>
       <UserForm type="Login" onSubmit={handleSubmit} />
       <LinkContainer>
         <Link to="/register">Registrieren</Link>
@@ -49,7 +49,7 @@ export const LinkContainer = styled.div`
   color: var(--font);
 `
 
-const StyledHeadline = styled.p`
+export const StyledHeadline = styled.p`
   font-size: 2em;
   font-weight: 700;
   text-align: center;

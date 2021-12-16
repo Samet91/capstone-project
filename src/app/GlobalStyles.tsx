@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
         --font-dark-salmon:#E29578;
         --font-middle-blue-green:#83C5BE;
         --font-max-red:#d62828;
+        --font-steelblue:#4682b4
     }
 
     body {

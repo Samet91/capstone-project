@@ -51,10 +51,10 @@ export default function UserForm({
 
 const Form = styled.form`
   display: grid;
-  border: solid 5px #e29578;
+  border: solid 5px var(--font-dark-salmon);
   border-radius: 10px;
   width: 80%;
-  background-color: #e29578;
+  background-color: var(--font-dark-salmon);
 `
 const InputContainer = styled.div`
   margin: 5px;

@@ -4,6 +4,7 @@ dotenv.config()
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import { connectDatabase, getCollection } from './utils/database'
+import jwt from 'jsonwebtoken'
 
 if (!process.env.MONGODB_URI) {
   throw new Error('No MongoDB URL dotenv variable')
@@ -25,8 +26,9 @@ app.use(cookieParser())
 app.patch('/api/costs/:username', async (req, res) => {
   const username = req.params.username
   const newCosts = req.body
+  const { sessiontoken } = req.cookies
 
-  if (username === req.cookies.username) {
+  if (username === jwt.verify(sessiontoken, JWT_SECRET)) {
     const insertedCost = await getCollection().updateOne(
       { username },
       {
@@ -102,7 +104,8 @@ app.post('/api/login', async (req, res) => {
     { projection: { _id: 0, username: 1, password: 1 } }
   )
   if (existingUser && existingUser.password === user.password) {
-    res.setHeader('Set-Cookie', `username=${existingUser.username};path="/"`)
+    const token = jwt.sign(user.username, JWT_SECRET)
+    res.cookie('sessiontoken', token).send()
     res.status(200).send('Login successful')
   } else {
     res.status(403).send('Password incorrect')
@@ -110,7 +113,7 @@ app.post('/api/login', async (req, res) => {
 })
 
 app.post('/api/logout', async (_req, res) => {
-  res.clearCookie('username')
+  res.clearCookie('sessiontoken')
   res.redirect('/')
 })
 

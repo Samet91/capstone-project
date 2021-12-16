@@ -71,7 +71,6 @@ const Header = styled.div`
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.8;
   letter-spacing: 0.15em;
-  color: #131111;
   background-color: steelblue;
   display: flex;
   justify-content: center;
@@ -86,7 +85,7 @@ const Li = styled.li<Partial<Transaction>>`
   display: flex;
   justify-content: space-between;
   margin-top: 0.5em;
-  background-color: #0f0b0b;
+  background-color: #2e1d1d;
   padding: 1.5em;
   border-radius: 5px;
   color: ${(props) => (props.type === 'income' ? 'green' : 'red')};
@@ -113,5 +112,5 @@ const MissingTransactions = styled.article`
 
 const H3 = styled.h3`
   font-family: monospace;
-  color: red;
+  color: var(--font-max-red);
 `

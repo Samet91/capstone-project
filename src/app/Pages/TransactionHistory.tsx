@@ -54,9 +54,7 @@ export default function TransactionHistory(): JSX.Element {
         <Link to={`/${username}`}>
           <BackIcon />
         </Link>
-        <Logo>
-          <img src={logoKreis} height={35} />
-        </Logo>
+        <Logo src={logoKreis} height={50} />
         <LogoutIcon onClick={() => handleClick()} />
       </Nav>
     </Container>
@@ -89,4 +87,7 @@ const LogoutIcon = styled(HiLogout)`
   height: 1.5rem;
   width: 1.5rem;
 `
-const Logo = styled.span``
+
+const Logo = styled.img`
+  place-self: center;
+`

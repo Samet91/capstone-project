@@ -52,14 +52,14 @@ export default function Dashboard(): JSX.Element {
       <Expense income={income} expense={expense} />
 
       <TransactionForm onNewTransaction={handleNewTransaction} />
-      <Link to="Transaction">
+      <StyledLink to="Transaction">
         <StyledButton>
           <ButtonText>Übersicht</ButtonText>
           <Icon>
             <ArrowIconRight />
           </Icon>
         </StyledButton>
-      </Link>
+      </StyledLink>
     </>
   )
 }
@@ -78,9 +78,13 @@ const ButtonText = styled.span`
   align-self: center;
   line-height: 1.6;
   letter-spacing: 0.1em;
+  color: black;
 `
 
 const Icon = styled.span`
   grid-column: 6/7;
   margin-right: -7px;
+`
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `

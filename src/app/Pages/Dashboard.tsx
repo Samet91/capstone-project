@@ -3,13 +3,15 @@ import TransactionForm from '../components/TransactionForm/TransactionForm'
 import Expense from '../components/Expense/Expense'
 
 import type { Transaction } from '../../types'
-import Button from '../components/Button/Button'
 import styled from 'styled-components'
-import { Link, useParams } from 'react-router-dom'
-import ArrowIconRight from '../components/Icons/ArrowIconRight'
+import logoKreis from '../../images/logoKreis.png'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { HiChevronDoubleRight, HiLogout } from 'react-icons/hi'
+import { Logo } from './TransactionHistory'
 import useFetch from '../hooks/useFetch'
 
 export default function Dashboard(): JSX.Element {
+  const navigate = useNavigate()
   const { username } = useParams()
   const [transactions, refetchTransactions] = useFetch<Transaction[]>(
     `/api/costs/${username}`
@@ -47,44 +49,59 @@ export default function Dashboard(): JSX.Element {
     }
   }
 
-  return (
-    <>
-      <Expense income={income} expense={expense} />
+  async function handleClick() {
+    await fetch('/api/logout/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    navigate('/')
+  }
 
-      <TransactionForm onNewTransaction={handleNewTransaction} />
-      <StyledLink to="Transaction">
-        <StyledButton>
-          <ButtonText>Übersicht</ButtonText>
-          <Icon>
-            <ArrowIconRight />
-          </Icon>
-        </StyledButton>
-      </StyledLink>
-    </>
+  return (
+    <Container>
+      <Main>
+        <Expense income={income} expense={expense} />
+
+        <TransactionForm onNewTransaction={handleNewTransaction} />
+      </Main>
+      <Nav>
+        <LogoutIcon onClick={() => handleClick()} />
+        <Logo src={logoKreis} height={50} />
+        <Link to="Transaction">
+          <TransactionPageIcon />
+        </Link>
+      </Nav>
+    </Container>
   )
 }
 
-const StyledButton = styled(Button)`
-  font-weight: bold;
-  font-size: 1rem;
-  background-color: #4485b9;
-  border: none;
+const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  margin-top: 50px;
+  grid-template-rows: auto 60px;
+  height: 100vh;
+`
+const Main = styled.main`
+  overflow-y: auto;
 `
 
-const ButtonText = styled.span`
-  align-self: center;
-  line-height: 1.6;
-  letter-spacing: 0.1em;
+const Nav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: var(--font-steelblue);
+  margin: 0 -10px;
+`
+
+const TransactionPageIcon = styled(HiChevronDoubleRight)`
   color: black;
+  height: 1.5rem;
+  width: 1.5rem;
 `
-
-const Icon = styled.span`
-  grid-column: 6/7;
-  margin-right: -7px;
-`
-const StyledLink = styled(Link)`
-  text-decoration: none;
+const LogoutIcon = styled(HiLogout)`
+  color: black;
+  height: 1.5rem;
+  width: 1.5rem;
+  transform: rotateY(180deg);
 `

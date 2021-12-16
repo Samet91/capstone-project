@@ -18,7 +18,6 @@ export default function Dashboard(): JSX.Element {
   const [expense, setExpense] = useState(0)
 
   useEffect(() => {
-    // if there are no transactions then dont try to work with them
     if (transactions && transactions.length > 0) {
       const newIncome = transactions
         .filter(({ type }) => type === 'income')
@@ -68,10 +67,11 @@ export default function Dashboard(): JSX.Element {
 const StyledButton = styled(Button)`
   font-weight: bold;
   font-size: 1rem;
-  background-color: steelblue;
+  background-color: #4485b9;
   border: none;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 50px;
 `
 
 const ButtonText = styled.span`

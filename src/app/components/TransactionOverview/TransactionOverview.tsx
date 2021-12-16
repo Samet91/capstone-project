@@ -86,7 +86,7 @@ const Li = styled.li<Partial<Transaction>>`
   display: flex;
   justify-content: space-between;
   margin-top: 0.5em;
-  background-color: #12151b;
+  background-color: #0f0b0b;
   padding: 1.5em;
   border-radius: 5px;
   color: ${(props) => (props.type === 'income' ? 'green' : 'red')};
@@ -94,12 +94,12 @@ const Li = styled.li<Partial<Transaction>>`
 
 const Date = styled.span`
   color: aquamarine;
+  margin-left: -10px;
 `
 
 const Icon = styled.div`
   display: inline-block;
-  margin-left: 5px;
-  border-radius: 100%;
+  margin: 0 -15px 0 10px;
 `
 
 const Amount = styled.span`

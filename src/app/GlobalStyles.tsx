@@ -9,6 +9,8 @@ const GlobalStyles = createGlobalStyle`
         --font:#EDF6F9;
         --font-dark:#006D77;
         --font-neon-green:#1cd61c;
+        --font-dark-salmon:#E29578;
+        --font-middle-blue-green:#83C5BE;
     }
 
     body {

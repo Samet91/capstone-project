@@ -61,7 +61,7 @@ export default function TransactionHistory(): JSX.Element {
   )
 }
 
-const Container = styled.div`
+export const Container = styled.div`
   display: grid;
   grid-template-rows: auto 60px;
   height: 100vh;
@@ -70,14 +70,14 @@ const Main = styled.main`
   overflow-y: auto;
   overflow-x: hidden;
 `
-const Nav = styled.nav`
+export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   padding: 1rem;
-  background-color: steelblue;
+  background-color: var(--font-steelblue);
   margin: 0 -10px;
 `
-const BackIcon = styled(HiChevronDoubleLeft)`
+export const BackIcon = styled(HiChevronDoubleLeft)`
   color: black;
   height: 1.5rem;
   width: 1.5rem;
@@ -88,6 +88,6 @@ const LogoutIcon = styled(HiLogout)`
   width: 1.5rem;
 `
 
-const Logo = styled.img`
+export const Logo = styled.img`
   place-self: center;
 `

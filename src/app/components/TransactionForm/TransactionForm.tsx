@@ -127,7 +127,7 @@ const Input = styled.input`
 `
 
 const ButtonContainer = styled.div`
-  margin: 16px 0px 20px;
+  margin: 30px 0px 20px;
 `
 
 const ButtonIncome = styled.button`

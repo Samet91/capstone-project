@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #006D77;
-    margin: 0 10px;
+    margin: 0;
     color: var(--font);
     }
 

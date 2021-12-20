@@ -60,13 +60,7 @@ const IncomeContainer = styled.div`
   margin-right: 5px;
 `
 
-const ExpenseContainer = styled.div`
-  flex: 1 1;
-  background-color: rgb(20 20 41 / 50%);
-  padding: 10px;
-  border-radius: 10px;
-  margin-left: 5px;
-`
+const ExpenseContainer = styled(IncomeContainer)``
 
 const IncomeTitle = styled.span`
   color: var(--font-neon-green);

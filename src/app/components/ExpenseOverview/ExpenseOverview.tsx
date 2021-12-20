@@ -6,7 +6,10 @@ type inOutProps = {
   expense: number
 }
 
-export default function Expense({ income, expense }: inOutProps): JSX.Element {
+export default function ExpenseOverview({
+  income,
+  expense,
+}: inOutProps): JSX.Element {
   return (
     <>
       <Balance income={income} expense={expense}>
@@ -57,12 +60,9 @@ const IncomeContainer = styled.div`
   margin-right: 5px;
 `
 
-const ExpenseContainer = styled.div`
-  flex: 1 1;
-  background-color: rgb(20 20 41 / 50%);
-  padding: 10px;
-  border-radius: 10px;
+const ExpenseContainer = styled(IncomeContainer)`
   margin-left: 5px;
+  margin-right: 0;
 `
 
 const IncomeTitle = styled.span`

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TransactionForm from '../components/TransactionForm/TransactionForm'
-import Expense from '../components/Expense/Expense'
+import Expense from '../components/ExpenseOverview/ExpenseOverview'
 
 import type { Transaction } from '../../types'
 import styled from 'styled-components'

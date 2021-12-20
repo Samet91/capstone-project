@@ -60,7 +60,10 @@ const IncomeContainer = styled.div`
   margin-right: 5px;
 `
 
-const ExpenseContainer = styled(IncomeContainer)``
+const ExpenseContainer = styled(IncomeContainer)`
+  margin-left: 5px;
+  margin-right: 0;
+`
 
 const IncomeTitle = styled.span`
   color: var(--font-neon-green);

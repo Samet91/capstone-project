@@ -109,15 +109,7 @@ const CatContainer = styled.div`
   width: 100%;
 `
 
-const AmountContainer = styled.div`
-  display: inline-flex;
-  position: relative;
-  min-width: 0;
-  flex-direction: column;
-  vertical-align: top;
-  margin-top: 10px;
-  width: 100%;
-`
+const AmountContainer = styled(CatContainer)``
 
 const Input = styled.input`
   padding: 10px;
@@ -132,7 +124,6 @@ const ButtonContainer = styled.div`
 
 const ButtonIncome = styled.button`
   width: 49%;
-  color: #121a12;
   background-color: var(--font-neon-green);
   border: none;
   padding: 0.5rem 1rem;
@@ -141,17 +132,10 @@ const ButtonIncome = styled.button`
   font-weight: bold;
 `
 
-const ButtonExpense = styled.button`
-  width: 49%;
-  margin-left: 2%;
+const ButtonExpense = styled(ButtonIncome)`
   color: var(--font);
   background-color: var(--font-max-red);
-  border: none;
-  padding: 5px;
-  border-radius: 5px;
-  letter-spacing: 0.3em;
-  font-weight: bold;
-  padding: 0.5rem 1rem;
+  margin-left: 2%;
 `
 
 const Warning = styled.span`

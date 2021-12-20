@@ -1,5 +1,5 @@
 import React from 'react'
-import Expense from './Expense'
+import Expense from './ExpenseOverview'
 
 export default {
   title: 'Component/Expense',

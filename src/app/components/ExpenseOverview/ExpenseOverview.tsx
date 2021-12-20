@@ -6,7 +6,10 @@ type inOutProps = {
   expense: number
 }
 
-export default function Expense({ income, expense }: inOutProps): JSX.Element {
+export default function ExpenseOverview({
+  income,
+  expense,
+}: inOutProps): JSX.Element {
   return (
     <>
       <Balance income={income} expense={expense}>

@@ -1,10 +1,9 @@
 import React from 'react'
 import TransactionOverview from './TransactionOverview'
-import CompletePage from './TransactionOverview'
 
 export default {
-  title: 'Component/Completepage',
-  component: CompletePage,
+  title: 'Component/TransactionOverview',
+  component: TransactionOverview,
 }
 
 const example = [
